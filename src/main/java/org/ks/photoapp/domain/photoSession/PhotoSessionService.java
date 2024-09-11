@@ -37,6 +37,10 @@ public class PhotoSessionService {
 
     }
 
+    public void deleteSession(long id) {
+        photoSessionRepository.deletePhotoSessionById(id);
+    }
+
     public void updateSession(PhotoSessionDto photoSessionDto, long id){
         PhotoSession photoSessionToUpdate = photoSessionRepository.findPhotoSessionById(id).orElseGet(PhotoSession::new);
         photoSessionToUpdate.setClient(photoSessionDto.getClient());
@@ -52,7 +56,7 @@ public class PhotoSessionService {
         photoSessionRepository.save(photoSessionToUpdate);
     }
 
-    public Optional<PhotoSessionDto> getClientByPhotoSession(Client client){
+    public Optional<PhotoSessionDto> getPhotoSessionByClient(Client client){
         return photoSessionRepository.findPhotoSessionByClient(client)
                 .map(PhotoSessionDtoMapper::map);
     }

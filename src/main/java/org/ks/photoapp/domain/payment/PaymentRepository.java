@@ -9,7 +9,5 @@ import java.util.Optional;
 @Repository
 public interface PaymentRepository extends CrudRepository<Payment, Long> {
 
-    Optional<Payment> findPaymentByIsDepositPaid(boolean isDepositPaid);
-    Optional<Payment> findPaymentByIsBasePaid(boolean isBasePaid);
-    Optional<Payment> findPaymentByIsAdditionalPaid(boolean isAdditionalPaid);
+    Optional<Payment> findPaymentById(Long id);
 }

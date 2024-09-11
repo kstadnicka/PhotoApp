@@ -13,4 +13,5 @@ public interface PhotoSessionRepository extends CrudRepository <PhotoSession,Lon
     Optional<PhotoSession> findPhotoSessionById(long id);
     Optional<PhotoSession> findPhotoSessionByClient(Client client);
     Optional<PhotoSession> findPhotoSessionBySessionDate(LocalDateTime sessionDate);
+    void deletePhotoSessionById(long id);
 }
