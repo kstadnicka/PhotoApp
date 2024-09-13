@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="0003-3" author="kamilastadnikca">
+        <createTable tableName="payment">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="deposit" type="INT"/>
+            <column name="base_payment" type="INT"/>
+            <column name="additional_payment" type="INT"/>
+            <column name="is_deposit_paid" type="BOOLEAN"/>
+            <column name="is_base_paid" type="BOOLEAN"/>
+            <column name="is_additional_paid" type="BOOLEAN"/>
+        </createTable>
+
+    </changeSet>
+</databaseChangeLog>

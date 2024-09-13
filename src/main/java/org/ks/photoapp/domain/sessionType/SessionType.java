@@ -1,4 +1,4 @@
-package org.ks.photoapp.domain.sessions;
+package org.ks.photoapp.domain.sessionType;
 
 
 import lombok.Getter;

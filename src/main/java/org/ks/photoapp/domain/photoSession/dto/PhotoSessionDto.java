@@ -2,7 +2,7 @@ package org.ks.photoapp.domain.photoSession.dto;
 
 import lombok.Data;
 import org.ks.photoapp.domain.client.Client;
-import org.ks.photoapp.domain.sessions.SessionType;
+import org.ks.photoapp.domain.sessionType.SessionType;
 
 
 import java.time.LocalDateTime;
