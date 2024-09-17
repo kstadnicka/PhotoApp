@@ -5,14 +5,12 @@
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
     <changeSet id="0004-4" author="kamilastadnicka">
-        <createTable tableName="photos">
-            <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="is_photos_sent_to_client_for_choose" type="BOOLEAN"/>
-            <column name="is_photos_chosen_by_client" type="BOOLEAN"/>
-            <column name="is_additional_photos_chosen_by_client" type="BOOLEAN"/>
+        <createTable tableName="session_type">
+            <column name="session_type" type="VARCHAR(255)"/>
         </createTable>
-
+        <addColumn tableName="session_type">
+            <column name="session_type_enum" type="ENUM('BABY','PREGNANT','FAMILY_CHILD_WOMEN','BIRTHDAY','WEEDING'
+            ,'HOLY_BAPTISM',' HOLY_COMMUNION','MINI')"/>
+        </addColumn>
     </changeSet>
 </databaseChangeLog>

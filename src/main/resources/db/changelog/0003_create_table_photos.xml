@@ -4,17 +4,14 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <changeSet id="0003-3" author="kamilastadnikca">
-        <createTable tableName="payment">
+    <changeSet id="0003-3" author="kamilastadnicka">
+        <createTable tableName="photos">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="deposit" type="INT"/>
-            <column name="base_payment" type="INT"/>
-            <column name="additional_payment" type="INT"/>
-            <column name="is_deposit_paid" type="BOOLEAN"/>
-            <column name="is_base_paid" type="BOOLEAN"/>
-            <column name="is_additional_paid" type="BOOLEAN"/>
+            <column name="sent_to_client_for_choose" type="BOOLEAN"/>
+            <column name="chosen_by_client" type="BOOLEAN"/>
+            <column name="additional_chosen_by_client" type="BOOLEAN"/>
         </createTable>
 
     </changeSet>

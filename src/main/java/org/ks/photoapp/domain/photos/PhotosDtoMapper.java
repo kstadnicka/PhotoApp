@@ -7,9 +7,9 @@ public class PhotosDtoMapper {
 
     static PhotosDto map(Photos photos){
         return new PhotosDto(
-                photos.getIsPhotosChosenByClient(),
-                photos.getIsPhotosChosenByClient(),
-                photos.getIsAdditionalPhotosChosenByClient()
+                photos.getChosenByClient(),
+                photos.getChosenByClient(),
+                photos.getAdditionalChosenByClient()
         );
     }
 }

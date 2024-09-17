@@ -10,9 +10,9 @@ public class Photos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    Boolean isPhotosSentToClientForChoose;
-    Boolean isPhotosChosenByClient;
-    Boolean isAdditionalPhotosChosenByClient;
+    Boolean SentToClientForChoose;
+    Boolean ChosenByClient;
+    Boolean AdditionalChosenByClient;
     @OneToOne(mappedBy = "photos")
     PhotoSession photoSession;
 }

@@ -48,9 +48,9 @@ public class PhotoSessionService {
         photoSessionToUpdate.setSessionType(photoSessionDto.getSessionType());
         photoSessionToUpdate.getPayment().setIsDepositPaid(photoSessionDto.getIsDepositPaid());
         photoSessionToUpdate.getPayment().setIsBasePaid(photoSessionDto.getIsBasePaid());
-        photoSessionToUpdate.getPhotos().setIsPhotosSentToClientForChoose(photoSessionDto.getIsPhotosSentToClientForChoose());
-        photoSessionToUpdate.getPhotos().setIsPhotosChosenByClient(photoSessionDto.getIsPhotosChosenByClient());
-        photoSessionToUpdate.getPhotos().setIsAdditionalPhotosChosenByClient(photoSessionDto.getIsAdditionalPhotosChosenByClient());
+        photoSessionToUpdate.getPhotos().setSentToClientForChoose(photoSessionDto.getIsPhotosSentToClientForChoose());
+        photoSessionToUpdate.getPhotos().setChosenByClient(photoSessionDto.getIsPhotosChosenByClient());
+        photoSessionToUpdate.getPhotos().setAdditionalChosenByClient(photoSessionDto.getIsAdditionalPhotosChosenByClient());
         photoSessionToUpdate.getPayment().setIsAdditionalPaid(photoSessionDto.getIsAdditionalPaid());
         photoSessionToUpdate.setIsContractFinished(photoSessionDto.getIsContractFinished());
         photoSessionRepository.save(photoSessionToUpdate);

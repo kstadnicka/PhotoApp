@@ -12,9 +12,9 @@ public class PhotoSessionDtoMapper {
                 photoSession.getSessionType(),
                 photoSession.getPayment().getIsDepositPaid(),
                 photoSession.getPayment().getIsBasePaid(),
-                photoSession.getPhotos().getIsPhotosSentToClientForChoose(),
-                photoSession.getPhotos().getIsPhotosChosenByClient(),
-                photoSession.getPhotos().getIsAdditionalPhotosChosenByClient(),
+                photoSession.getPhotos().getSentToClientForChoose(),
+                photoSession.getPhotos().getChosenByClient(),
+                photoSession.getPhotos().getAdditionalChosenByClient(),
                 photoSession.getPayment().getIsAdditionalPaid(),
                 photoSession.getIsContractFinished()
         );
