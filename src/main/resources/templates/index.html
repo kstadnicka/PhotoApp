@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+<main class="main-content" layout:fragment="content">
+    <header class="jumbotron">
+        <p class="jumbotron-description">
+            Witaj w aplikacji, która pozwoli Ci w łatwy sposób zarządzać twoimi sesjami!
+        </p>
+        <p class="jumbotron-description"><a class="log" href="#" th:href="@{/login}">Zaloguj się</a> lub <a class="log" href="#">Zarejestruj się</a>
+            aby móc korzystać z wszystkich możliwości!</p>
+    </header>
+</main>
+</body>
+
+</html>

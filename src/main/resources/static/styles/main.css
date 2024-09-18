@@ -45,7 +45,7 @@ a{
     text-align: center;
 }
 .jumbotron-header{
-    font-size: 4rem;
+    font-size: 3rem;
     margin: 3rem 0;
 }
 .jumbotron-description{
@@ -60,6 +60,18 @@ a{
     font-style: italic;
 }
 
+.mc-form-message{
+    color: red;
+    text-align: center;
+}
+
+.login-form{
+    font-size: 1rem;
+    margin: 1rem 0;
+    color: black;
+    display: block;
+}
+
 @media only screen and (min-width: 992px) {
 
     .menu-item {
@@ -71,8 +83,6 @@ a{
     .menu-logo-container {
         flex: 1;
     }
-
-    .main-content,
     .menu {
         align-self: center;
         width: 960px;
