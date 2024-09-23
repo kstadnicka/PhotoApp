@@ -12,9 +12,11 @@
     <h2 class="list-heading">Zaloguj się</h2>
     <form action="" th:action="@{/login}" method="post" class="mc-form">
         <p th:if="${param.error}"
-           th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
            class="mc-form-message">
             Błąd logowania
+        </p>
+        <p th:if="${param.logout}" class="mc-form-message">
+            Zostałeś wylogowany, możesz zalogować się ponownie.
         </p>
         <p class="login-form">
         <label class="login-form" for="username">Adres email</label>
@@ -23,6 +25,7 @@
         <input class="login-form" id="password" name="password" placeholder="hasło" type="password">
         <button class="login-form" type="submit">Zaloguj się</button>
         </p>
+        <p class="login-form">Nie masz konta? <a class="log" href="#">Zarejestruj się!</a> </p>
     </form>
 </main>
 </body>

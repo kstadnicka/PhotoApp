@@ -1,18 +1,36 @@
 <!DOCTYPE html>
-<html lang="pl"
-      xmlns:th="https://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+<html lang="pl" xmlns:th="https://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>PhotoApp</title>
+    referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+</head>
 <body>
-<main class="main-content" layout:fragment="content">
+<div class="container">
+    <ul class="menu">
+        <li class="menu-logo-container">
+            <a href="#" th:href="@{/}">
+                <i id="icon" class="fa-solid fa-camera"></i>PhotoApp
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="#" th:href="@{/login}">Zaloguj się</a>
+        </li>
+    </ul>
     <header class="jumbotron">
+        <h1 class="jumbotron-header">PhotoApp</h1>
         <p class="jumbotron-description">
             Witaj w aplikacji, która pozwoli Ci w łatwy sposób zarządzać twoimi sesjami!
         </p>
         <p class="jumbotron-description"><a class="log" href="#" th:href="@{/login}">Zaloguj się</a> lub <a class="log" href="#">Zarejestruj się</a>
             aby móc korzystać z wszystkich możliwości!</p>
     </header>
-</main>
+    <main class="main-content">
+    </main>
+</div>
 </body>
-
 </html>

@@ -41,7 +41,7 @@ a{
     background-image: url("../img/photos.jpg");
     background-position: center;
     background-repeat: no-repeat;
-    padding: 11rem;
+    padding: 8.5rem;
     text-align: center;
 }
 .jumbotron-header{
@@ -67,9 +67,31 @@ a{
 
 .login-form{
     font-size: 1rem;
-    margin: 1rem 0;
+    margin: 0.5rem auto;
     color: black;
     display: block;
+    text-align: center;
+    width: 25rem;
+}
+
+.error-header{
+    color: black;
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 1rem auto;
+}
+
+.error-message{
+    color: black;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 1rem auto;
+}
+.fa-face-frown{
+    color: black;
+    text-align: center;
+    display: block;
+    font-size: 2.5rem;
 }
 
 @media only screen and (min-width: 992px) {
@@ -87,4 +109,5 @@ a{
         align-self: center;
         width: 960px;
     }
+
 }
