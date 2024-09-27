@@ -1,35 +1,21 @@
 <!DOCTYPE html>
-<html lang="pl"
-      xmlns:th="https://www.thymeleaf.org"
+<html lang="pl" xmlns:th="https://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
     <title>Zaloguj się</title>
-    <script>
-        function goToHomePage() {
-            window.location.href = '/home-page';
-        }
-    </script>
 </head>
 <body>
 <main class="main-content" layout:fragment="content">
-    <h2 class="list-heading">Zaloguj się</h2>
-    <form action="" th:action="@{/login}" method="post">
-        <p th:if="${param.error}"
-           class="photo-form-message">
-            Błąd logowania
-        </p>
-        <p th:if="${param.logout}" class="photo-form-message">
-            Zostałeś wylogowany, możesz zalogować się ponownie.
-        </p>
-        <p class="login-form">
-        <label class="login-form" for="username">Adres email</label>
-        <input class="login-form" id="username" name="username" placeholder="email">
-        <label class="login-form" for="password">Hasło</label>
-        <input class="login-form" id="password" name="password" placeholder="hasło" type="password">
-            <button class="login-form" type="button" onclick="goToHomePage()">Zaloguj się</button>
-        </p>
+    <form action="" th:action="@{/login}" method="post" class="login-form">
+        <p th:if="${param.error}" class="photo-message"> Błąd logowania </p>
+        <p th:if="${param.logout}" class="photo-message"> Zostałeś wylogowany, możesz zalogować się ponownie. </p>
+        <p class="login-form"> <label class="login-form" for="username">Adres email</label>
+            <input class="login-form" id="username" name="username" placeholder="email">
+            <label class="login-form" for="password">Hasło</label>
+            <input class="login-form" id="password" name="password" placeholder="hasło" type="password">
+            <button class="login-form" type="submit">Zaloguj się</button>
         <p class="login-form">Nie masz konta? <a class="log" href="#" th:href="@{/registration}">Zarejestruj się!</a> </p>
     </form>
 </main>

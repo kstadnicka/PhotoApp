@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="pl" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
 <head>
     <meta charset="UTF-8">
     <title>PhotoApp</title>
-    referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
@@ -28,7 +29,8 @@
         <p class="jumbotron-description">
             Witaj w aplikacji, która pozwoli Ci w łatwy sposób zarządzać twoimi sesjami!
         </p>
-        <p class="jumbotron-description"><a class="log" href="#" th:href="@{/login}">Zaloguj się</a> lub <a class="log" href="#" th:href="@{registration}">Zarejestruj się</a>
+        <p class="jumbotron-description"><a class="log" href="#" th:href="@{/login}">Zaloguj się</a> lub
+            <a class="log" href="#" th:href="@{/registration}">Zarejestruj się</a>
             aby móc korzystać z wszystkich możliwości!</p>
     </header>
     <main class="main-content">

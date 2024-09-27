@@ -12,6 +12,10 @@
     <h2 class="list-heading">Zarejestruj się</h2>
     <form action="#" th:action="@{/registration}" method="post" th:object="${user}">
         <p class="login-form">
+            <label class="login-form" for="firstname">Imię</label>
+            <input class="login-form" id="firstname" name="firstname" placeholder="imię">
+            <label class="login-form" for="lastname">Nazwisko</label>
+            <input class="login-form" id="lastname" name="lastname" placeholder="nazwisko">
             <label class="login-form" for="username">Adres email</label>
             <input class="login-form" id="username" name="username" placeholder="email">
             <label class="login-form" for="password">Hasło</label>

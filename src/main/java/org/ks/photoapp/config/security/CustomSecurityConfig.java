@@ -22,6 +22,7 @@ public class CustomSecurityConfig {
                 )
                 .formLogin(login -> login
                         .loginPage("/login")
+                        .defaultSuccessUrl("/home-page")
                         .permitAll()
                 )
                 .logout(logout -> logout
