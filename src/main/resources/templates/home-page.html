@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Panel użytkownika</title>
+    <title>PhotoApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
@@ -13,8 +19,8 @@
 <div class="container">
     <ul class="menu">
         <li class="menu-logo-container">
-            <a href="#" th:href="@{/}">
-                <i id="icon" class="fa-solid fa-camera"></i>PhotoApp
+            <a href="#" th:href="@{/home-page}">
+                <i id="icon" class="fa-solid fa-camera" ></i>PhotoApp
             </a>
         </li>
         <li class="menu-item">
@@ -22,11 +28,17 @@
             <a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()">Wyloguj się</a>
         </li>
     </ul>
-    <header class="jumbotron">
+    <header class="jumbotron-home-page">
         <h1 class="jumbotron-header">PhotoApp</h1>
     </header>
-    <main class="main-content">
-    </main>
+    <div class="user-menu">
+        <h2>Menu użytkownika</h2>
+        <a href="#">Kalendarz</a>
+        <a href="#">Rozliczenia</a>
+        <a href="#">Sesje</a>
+        <a href="#">Klienci</a>
+    </div>
+
 </div>
 </body>
 </html>

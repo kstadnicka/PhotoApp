@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
->
 <head>
     <meta charset="UTF-8">
     <title>PhotoApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
@@ -15,14 +20,13 @@
     <ul class="menu">
         <li class="menu-logo-container">
             <a href="#" th:href="@{/}">
-                <i id="icon" class="fa-solid fa-camera"></i>PhotoApp
+                <i id="icon" class="fa-solid fa-camera" ></i>PhotoApp
             </a>
         </li>
         <li class="menu-item">
             <a href="#" th:href="@{/login}" sec:authorize="!isAuthenticated()">Zaloguj się</a>
             <a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()">Wyloguj się</a>
         </li>
-
     </ul>
     <header class="jumbotron">
         <h1 class="jumbotron-header">PhotoApp</h1>
@@ -33,8 +37,7 @@
             <a class="log" href="#" th:href="@{/registration}">Zarejestruj się</a>
             aby móc korzystać z wszystkich możliwości!</p>
     </header>
-    <main class="main-content">
-    </main>
 </div>
 </body>
 </html>
+

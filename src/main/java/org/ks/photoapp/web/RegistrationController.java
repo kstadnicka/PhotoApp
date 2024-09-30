@@ -25,6 +25,6 @@ public class RegistrationController {
     @PostMapping("/registration")
     public String register(UserRegistrationDto userRegistration) {
         userService.registerUser(userRegistration);
-        return "succes-registration";
+        return "success-registration";
     }
 }
