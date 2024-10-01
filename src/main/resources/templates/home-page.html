@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="https://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
@@ -13,8 +12,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <script defer src="../static/scripts/scripts.js" th:src="@{/scripts/scripts.js}"></script>
     <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
 </head>
+
 <body>
 <div class="container">
     <ul class="menu">
@@ -31,14 +32,18 @@
     <header class="jumbotron-home-page">
         <h1 class="jumbotron-header">PhotoApp</h1>
     </header>
+    <div class="user-page">
     <div class="user-menu">
         <h2>Menu użytkownika</h2>
-        <a href="#">Kalendarz</a>
-        <a href="#">Rozliczenia</a>
-        <a href="#">Sesje</a>
-        <a href="#">Klienci</a>
+        <a href="#" th:href="@{/home-page}">Kalendarz</a>
+        <a href="#" th:href="@{/payments}">Rozliczenia</a>
+        <a href="#" th:href="@{/sessions}">Sesje</a>
+        <a href="#" th:href="@{/clients}">Klienci</a>
     </div>
-
+    <div class="calendar-container">
+        <div id="calendar"></div>
+    </div>
+    </div>
 </div>
 </body>
 </html>

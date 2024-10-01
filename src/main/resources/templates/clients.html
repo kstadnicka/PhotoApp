@@ -12,13 +12,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <script defer src="../static/scripts/scripts.js" th:src="@{/scripts/scripts.js}"></script>
     <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
 </head>
+
 <body>
 <div class="container">
     <ul class="menu">
         <li class="menu-logo-container">
-            <a href="#" th:href="@{/}">
+            <a href="#" th:href="@{/home-page}">
                 <i id="icon" class="fa-solid fa-camera" ></i>PhotoApp
             </a>
         </li>
@@ -27,16 +29,9 @@
             <a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()">Wyloguj się</a>
         </li>
     </ul>
-    <header class="jumbotron">
+    <header class="jumbotron-home-page">
         <h1 class="jumbotron-header">PhotoApp</h1>
-        <p class="jumbotron-description">
-            Witaj w aplikacji, która pozwoli Ci w łatwy sposób zarządzać twoimi sesjami!
-        </p>
-        <p class="jumbotron-description"><a class="log" href="#" th:href="@{/login}">Zaloguj się</a> lub
-            <a class="log" href="#" th:href="@{/registration}">Zarejestruj się</a>
-            aby móc korzystać z wszystkich możliwości!</p>
     </header>
 </div>
 </body>
 </html>
-
