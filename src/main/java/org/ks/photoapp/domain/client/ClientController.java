@@ -3,6 +3,8 @@ package org.ks.photoapp.domain.client;
 
 
 import org.ks.photoapp.domain.client.dto.ClientDto;
+import org.ks.photoapp.domain.photoSession.PhotoSession;
+import org.ks.photoapp.domain.photoSession.PhotoSessionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +22,15 @@ public class ClientController{
     ClientService clientService;
     public static final String NOTIFICATION_ATTRIBUTE = "notification";
 
-    @GetMapping("/all-clients")
-    public String getAllClients(Model model) {
-       List<ClientDto> client = clientService.getAllClients();
-        model.addAttribute("clients", client);
+    public ClientController(ClientService clientService) {
+        this.clientService = clientService;
+    }
+
+    @GetMapping("/clients")
+    public String getAllCurrentClients(Model model) {
+        List<ClientDto> clients = clientService.getAllCurrentClients();
+        model.addAttribute("heading", "Aktualni klienci");
+        model.addAttribute("clients", clients);
         return "clients";
     }
 
@@ -32,7 +39,7 @@ public class ClientController{
         ClientDto client = clientService.findClientById(id)
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
         model.addAttribute("client", client);
-        return "client-id";
+        return "client";
     }
 
     @GetMapping("/client/{lastName}")
@@ -40,7 +47,7 @@ public class ClientController{
         ClientDto client = clientService.findClientByLastName(lastName)
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
         model.addAttribute("client", client);
-        return "client-lastName";
+        return "client";
     }
 
     @GetMapping("/client/new-client")

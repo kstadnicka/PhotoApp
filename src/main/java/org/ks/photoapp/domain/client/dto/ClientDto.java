@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class ClientDto {
+    Long id;
     String firstName;
     String lastName;
     String email;
@@ -12,10 +13,11 @@ public class ClientDto {
     public ClientDto() {
     }
 
-    public ClientDto(Long phoneNumber, String email, String lastName, String firstName) {
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.lastName = lastName;
+    public ClientDto(Long id, String firstName, String lastName, String email, Long phoneNumber) {
+        this.id = id;
         this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 }

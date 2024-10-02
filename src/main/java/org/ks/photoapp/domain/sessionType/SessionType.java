@@ -15,9 +15,9 @@ public enum SessionType {
     HOLY_COMMUNION("Komunia", 0, 0),
     MINI("Mini sesja", 0, 0);
 
-    private String type;
-    private int amount;
-    private double price;
+    private final String type;
+    private final int amount;
+    private final double price;
 
     SessionType(String type, int amount, double price) {
         this.type = type;

@@ -70,6 +70,30 @@ a{
     margin: 0.8rem 0;
 }
 
+.client-list{
+    list-style-type: none;
+}
+
+.client-list-item{
+    margin-bottom: 16px;
+    display: flex;
+    border: 1px #6d6d6d solid;
+}
+
+.client-list-item-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+}
+
+.client-list-item-content >*{
+    margin: 8px 0;
+}
+
+.client-list-item-title{
+    font-size: 1.6rem;
+}
 
 .photo-message{
     color: red;

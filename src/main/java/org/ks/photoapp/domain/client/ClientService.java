@@ -2,9 +2,14 @@ package org.ks.photoapp.domain.client;
 
 
 import org.ks.photoapp.domain.client.dto.ClientDto;
+import org.ks.photoapp.domain.photoSession.PhotoSession;
+import org.ks.photoapp.domain.photoSession.PhotoSessionRepository;
+import org.ks.photoapp.domain.photoSession.PhotoSessionService;
+import org.ks.photoapp.domain.photoSession.dto.PhotoSessionDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,11 +17,22 @@ import java.util.Optional;
 public class ClientService {
 
    private final ClientRepository clientRepository;
+   private final PhotoSessionRepository photoSessionRepository;
 
-    public ClientService(ClientRepository clientRepository) {
+    public ClientService(ClientRepository clientRepository, PhotoSessionRepository photoSessionRepository) {
         this.clientRepository = clientRepository;
+        this.photoSessionRepository = photoSessionRepository;
     }
 
+
+    public List<ClientDto> getAllCurrentClients() {
+        return photoSessionRepository.findAll().stream()
+                .filter(session -> !session.getIsContractFinished())
+                .map(PhotoSession::getClient)
+                .distinct()
+                .map(ClientDtoMapper::map)
+                .toList();
+    }
     public List<ClientDto> getAllClients() {
        List<Client> clients = (List<Client>)clientRepository.findAll();
        return clients.stream()

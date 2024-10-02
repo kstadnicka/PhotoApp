@@ -6,11 +6,19 @@
 
     <changeSet id="0004-4" author="kamilastadnicka">
         <createTable tableName="session_type">
-            <column name="session_type" type="VARCHAR(255)"/>
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duration" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="int">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
-        <addColumn tableName="session_type">
-            <column name="session_type_enum" type="ENUM('BABY','PREGNANT','FAMILY_CHILD_WOMEN','BIRTHDAY','WEEDING'
-            ,'HOLY_BAPTISM',' HOLY_COMMUNION','MINI')"/>
-        </addColumn>
     </changeSet>
+
 </databaseChangeLog>

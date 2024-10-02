@@ -65,4 +65,10 @@ public class PhotoSessionService {
         return photoSessionRepository.findPhotoSessionBySessionDate(date)
                 .map(PhotoSessionDtoMapper::map);
     }
+
+    public List<PhotoSessionDto> findAllUnfinishedPhotoSession(){
+        return photoSessionRepository.findAllByIsContractFinishedIsFalse().stream()
+                .map(PhotoSessionDtoMapper::map)
+                .toList();
+    }
 }
