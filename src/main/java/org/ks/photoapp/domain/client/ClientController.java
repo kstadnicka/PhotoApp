@@ -26,12 +26,20 @@ public class ClientController{
         this.clientService = clientService;
     }
 
-    @GetMapping("/clients")
+    @GetMapping("/client/current")
     public String getAllCurrentClients(Model model) {
         List<ClientDto> clients = clientService.getAllCurrentClients();
         model.addAttribute("heading", "Aktualni klienci");
         model.addAttribute("clients", clients);
-        return "clients";
+        return "client";
+    }
+
+    @GetMapping("/client/all")
+    public String getAllClients(Model model) {
+        List<ClientDto> clients = clientService.getAllClients();
+        model.addAttribute("heading", "Wszyscy klienci");
+        model.addAttribute("clients", clients);
+        return "all-client";
     }
 
     @GetMapping("/client/{id}")

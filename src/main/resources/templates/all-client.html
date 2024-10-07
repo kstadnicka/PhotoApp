@@ -32,27 +32,39 @@
     <header class="jumbotron-home-page">
         <h1 class="jumbotron-header">PhotoApp</h1>
     </header>
-    <div class="user-page">
-    <div class="user-menu">
+    <main class="main-content">
+        <div class="user-menu">
             <h2>Menu użytkownika</h2>
             <a href="#" th:href="@{/home-page}">Kalendarz</a>
-        <a href="#" th:href="@{/payments}">Rozliczenia</a>
-        <a href="#" th:href="@{/sessions}">Sesje</a>
-        <a href="#" id="clients-toggle">Klienci</a>
-        <div id="clients-sub-menu" class="sub-menu">
-            <a class="toggle-menu" href="#" th:href="@{/client/all}">
-                <i class="fa-solid fa-arrow-right"></i>Wszyscy klienci
-            </a><br>
-            <a class="toggle-menu" href="#" th:href="@{/client/current}">
-                <i class="fa-solid fa-arrow-right"></i>Aktualni klienci
-            </a>
+            <a href="#" th:href="@{/payments}">Rozliczenia</a>
+            <a href="#" th:href="@{/sessions}">Sesje</a>
+            <a href="#" id="clients-toggle">Klienci</a>
+            <div id="clients-sub-menu" class="sub-menu hidden">
+                <a class="toggle-menu" href="#" th:href="@{/client/all}">
+                    <i class="fa-solid fa-arrow-right"></i>Wszyscy klienci
+                </a><br>
+                <a class="toggle-menu" href="#" th:href="@{/client/current}">
+                    <i class="fa-solid fa-arrow-right"></i>Aktualni klienci
+                </a>
+            </div>
         </div>
-
-    </div>
-    <div class="calendar-container">
-        <div id="calendar"></div>
-    </div>
-    </div>
+        <h2 class="list-heading" th:text="${heading}">Wszyscy klienci</h2>
+        <ul class="client-list" th:remove="all-but-first">
+            <li class="client-list-item" th:each="client: ${clients}">
+                <a href="#" th:href="@{|client/${client.id}|}"></a>
+                <div class="client-list-item-card">
+                    <div class="client-list-item-content">
+                        <h3 class="client-list-item-title">
+                            <a href="#" th:href="@{|client/${client.id}|}" th:text="|Nazwisko: ${client.lastName}|">Nazwisko klienta</a>
+                        </h3>
+                        <h3 th:text="|Imię: ${client.firstName}|">Imię kilenta</h3>
+                        <h3 th:text="|Numer telefonu: ${client.phoneNumber}|">numer telefonu</h3>
+                        <h3 th:text="|Email: ${client.email}|">email</h3>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </main>
 </div>
 </body>
 </html>
