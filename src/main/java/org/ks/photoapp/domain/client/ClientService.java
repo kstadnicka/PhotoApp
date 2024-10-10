@@ -4,12 +4,9 @@ package org.ks.photoapp.domain.client;
 import org.ks.photoapp.domain.client.dto.ClientDto;
 import org.ks.photoapp.domain.photoSession.PhotoSession;
 import org.ks.photoapp.domain.photoSession.PhotoSessionRepository;
-import org.ks.photoapp.domain.photoSession.PhotoSessionService;
-import org.ks.photoapp.domain.photoSession.dto.PhotoSessionDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

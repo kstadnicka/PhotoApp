@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
     <title>PhotoApp</title>
@@ -17,21 +19,7 @@
 </head>
 
 <body>
-<div class="container">
-    <ul class="menu">
-        <li class="menu-logo-container">
-            <a href="#" th:href="@{/home-page}">
-                <i id="icon" class="fa-solid fa-camera" ></i>PhotoApp
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="#" th:href="@{/login}" sec:authorize="!isAuthenticated()">Zaloguj się</a>
-            <a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()">Wyloguj się</a>
-        </li>
-    </ul>
-    <header class="jumbotron-home-page">
-        <h1 class="jumbotron-header">PhotoApp</h1>
-    </header>
+<main class="main-content" layout:fragment="content">
     <main class="main-content">
         <div class="user-menu">
             <h2>Menu użytkownika</h2>
@@ -55,7 +43,7 @@
                 <div class="client-list-item-card">
                     <div class="client-list-item-content">
                         <h3 class="client-list-item-title">
-                            <a href="#" th:href="@{|client/${client.id}|}" th:text="|Nazwisko: ${client.lastName}|">Nazwisko klienta</a>
+                            <a href="#" th:href="@{${client.id}|}" th:text="|Nazwisko: ${client.lastName}|">Nazwisko klienta</a>
                         </h3>
                         <h3 th:text="|Imię: ${client.firstName}|">Imię kilenta</h3>
                         <h3 th:text="|Numer telefonu: ${client.phoneNumber}|">numer telefonu</h3>
@@ -65,6 +53,6 @@
             </li>
         </ul>
     </main>
-</div>
+</main>
 </body>
 </html>

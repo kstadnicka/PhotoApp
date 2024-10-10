@@ -5,6 +5,7 @@ import org.ks.photoapp.domain.client.Client;
 import org.ks.photoapp.domain.payment.Payment;
 import org.ks.photoapp.domain.photoSession.dto.PhotoSessionDto;
 import org.ks.photoapp.domain.photos.Photos;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,6 +16,10 @@ import java.util.Optional;
 public class PhotoSessionService {
     PhotoSessionRepository photoSessionRepository;
 
+    public PhotoSessionService(PhotoSessionRepository photoSessionRepository) {
+        this.photoSessionRepository = photoSessionRepository;
+    }
+
     public List<PhotoSessionDto> getAllPhotoSession() {
         List<PhotoSession> photoSessions = (List<PhotoSession>) photoSessionRepository.findAll();
         return photoSessions.stream()
@@ -22,6 +27,10 @@ public class PhotoSessionService {
                 .toList();
     }
 
+    public Optional<PhotoSessionDto> getPhotoSessionByClientId(Long clientId) {
+        Optional<PhotoSession> photoSession = photoSessionRepository.findPhotoSessionByClientId(clientId);
+        return photoSession.map(PhotoSessionDtoMapper::map);
+    }
 
     public void createNewSession(PhotoSessionDto photoSessionDto) {
         Payment payment = new Payment();
@@ -60,6 +69,8 @@ public class PhotoSessionService {
         return photoSessionRepository.findPhotoSessionByClient(client)
                 .map(PhotoSessionDtoMapper::map);
     }
+
+
 
     public Optional<PhotoSessionDto> getPhotoSessionByDate(LocalDateTime date){
         return photoSessionRepository.findPhotoSessionBySessionDate(date)

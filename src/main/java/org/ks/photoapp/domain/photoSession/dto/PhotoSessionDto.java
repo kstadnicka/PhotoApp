@@ -38,4 +38,5 @@ public class PhotoSessionDto {
         this.isAdditionalPaid = isAdditionalPaid;
         this.isContractFinished = isContractFinished;
     }
+
 }

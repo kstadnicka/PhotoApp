@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">>
 <head>
     <meta charset="UTF-8">
     <title>PhotoApp</title>
@@ -15,28 +17,18 @@
     <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
 </head>
 <body>
-<div class="container">
-    <ul class="menu">
-        <li class="menu-logo-container">
-            <a href="#" th:href="@{/}">
-                <i id="icon" class="fa-solid fa-camera" ></i>PhotoApp
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="#" th:href="@{/login}" sec:authorize="!isAuthenticated()">Zaloguj się</a>
-            <a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()">Wyloguj się</a>
-        </li>
-    </ul>
-    <header class="jumbotron">
-        <h1 class="jumbotron-header">PhotoApp</h1>
+<main class="main-content" layout:fragment="content">
+
+<div class="container>">
         <p class="jumbotron-description">
             Witaj w aplikacji, która pozwoli Ci w łatwy sposób zarządzać twoimi sesjami!
         </p>
         <p class="jumbotron-description"><a class="log" href="#" th:href="@{/login}">Zaloguj się</a> lub
             <a class="log" href="#" th:href="@{/registration}">Zarejestruj się</a>
             aby móc korzystać z wszystkich możliwości!</p>
-    </header>
+
 </div>
+</main>
 </body>
 </html>
 

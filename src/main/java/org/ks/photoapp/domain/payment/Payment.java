@@ -19,4 +19,6 @@ public class Payment {
     @OneToOne(mappedBy = "payment")
     PhotoSession photoSession;
 
+
+
 }

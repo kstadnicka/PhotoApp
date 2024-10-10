@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
     <title>PhotoApp</title>
@@ -17,28 +19,14 @@
 </head>
 
 <body>
-<div class="container">
-    <ul class="menu">
-        <li class="menu-logo-container">
-            <a href="#" th:href="@{/home-page}">
-                <i id="icon" class="fa-solid fa-camera" ></i>PhotoApp
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="#" th:href="@{/login}" sec:authorize="!isAuthenticated()">Zaloguj się</a>
-            <a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()">Wyloguj się</a>
-        </li>
-    </ul>
-    <header class="jumbotron-home-page">
-        <h1 class="jumbotron-header">PhotoApp</h1>
-    </header>
+<main class="main-content" layout:fragment="content">
     <div class="user-page">
     <div class="user-menu">
             <h2>Menu użytkownika</h2>
             <a href="#" th:href="@{/home-page}">Kalendarz</a>
-        <a href="#" th:href="@{/payments}">Rozliczenia</a>
+        <a th:href="@{/payments}">Płatności</a>
         <a href="#" th:href="@{/sessions}">Sesje</a>
-        <a href="#" id="clients-toggle">Klienci</a>
+        <a id="clients-toggle">Klienci</a>
         <div id="clients-sub-menu" class="sub-menu">
             <a class="toggle-menu" href="#" th:href="@{/client/all}">
                 <i class="fa-solid fa-arrow-right"></i>Wszyscy klienci
@@ -47,12 +35,11 @@
                 <i class="fa-solid fa-arrow-right"></i>Aktualni klienci
             </a>
         </div>
-
     </div>
     <div class="calendar-container">
         <div id="calendar"></div>
     </div>
-    </div>
 </div>
+</main>
 </body>
 </html>

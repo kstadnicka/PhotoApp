@@ -11,6 +11,7 @@ a{
     color: black;
 }
 .container{
+    text-align: center;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -20,12 +21,16 @@ a{
     flex: 1;
 }
 
+
+
 #icon{
     color: black;
 }
 
 .menu{
     display: flex;
+    padding: 10px;
+    list-style-type: none;
     flex-wrap: wrap;
     justify-content: space-between;
     margin-right:20px;
@@ -63,6 +68,11 @@ a{
     margin-top: 1rem;
 }
 
+.client-list>h2{
+    text-align: center;
+    margin: auto;
+}
+
 .list-heading{
     text-align: center;
     color: white;
@@ -72,10 +82,11 @@ a{
 
 .client-list {
     list-style-type: none;
-    padding: 50px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    text-align: center;
 }
 
 .client-list-item {
@@ -83,8 +94,8 @@ a{
     max-width: 600px;
     display: flex;
     border-bottom: solid darkgrey;
+    text-align: left;
 }
-
 
 .client-list-item-card{
     display: flex;
@@ -110,6 +121,10 @@ a{
     text-decoration: underline;
 }
 
+.client-info{
+    text-align: left;
+    font-size: 1rem;
+}
 .photo-message{
     color: red;
     text-align: center;
@@ -178,13 +193,13 @@ a{
     display: block;
     width: auto;
     border-bottom: 0;
-    margin: 1rem 3rem;
+    margin-left: auto; /* Push to the right */
     font-size: 20px;
 }
 
-.menu-logo-container
 .menu-toggle{
     flex: 1;
+    color: black;
 }
 
 .menu {
@@ -192,6 +207,11 @@ a{
     background-color: white;
 }
 
+.menu a {
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+}
 
 .success-registration {
     text-align: center;
@@ -202,12 +222,15 @@ a{
 
 
 .user-menu {
-    width: 20%;
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 200px;
     background-color: #1c1e1d;
     color: white;
     float: left;
     border-right-color: white;
+    text-align: left;
 }
 
 .user-menu h2 {
@@ -290,3 +313,15 @@ a{
 }
 
 
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrapper {
+    display: flex;
+}
+
+.client-name{
+
+}

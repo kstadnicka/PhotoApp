@@ -4,7 +4,7 @@ package org.ks.photoapp.domain.photoSession;
 import org.ks.photoapp.domain.photoSession.dto.PhotoSessionDto;
 
 public class PhotoSessionDtoMapper {
-    static PhotoSessionDto map(PhotoSession photoSession) {
+    public static PhotoSessionDto map(PhotoSession photoSession) {
         return new PhotoSessionDto(
                 photoSession.getClient(),
                 photoSession.getId(),

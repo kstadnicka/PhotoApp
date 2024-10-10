@@ -6,7 +6,6 @@ import org.ks.photoapp.domain.photoSession.PhotoSession;
 
 import java.util.ArrayList;
 import java.util.List;
-
 @Data
 @Entity
 public class Client {
@@ -19,8 +18,5 @@ public class Client {
     Long phoneNumber;
     @OneToMany(mappedBy = "client")
     List<PhotoSession> photoSessions = new ArrayList<>();
-
-
-
 
 }
