@@ -66,4 +66,11 @@ public class PhotoSessionController {
         System.out.println("Dane zostały zaktualinowane");
         return "redirect:/photosession/{id}";
     }
+
+    @GetMapping("/{date}")
+    public List<Client> getClientsByDate(@PathVariable String date) {
+        LocalDateTime localDate = LocalDateTime.parse(date);
+        return photoSessionService.getClientsByDate(localDate);
+    }
+
 }

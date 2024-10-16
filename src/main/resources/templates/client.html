@@ -23,8 +23,15 @@
     <div class="user-menu">
       <h2>Menu użytkownika</h2>
       <a href="#" th:href="@{/home-page}">Kalendarz</a>
-      <a href="#" th:href="@{/payments}">Rozliczenia</a>
-      <a href="#" th:href="@{/sessions}">Sesje</a>
+      <a>Sesje</a>
+      <div class="sub-menu">
+        <a href="#">
+          <i class="fa-solid fa-arrow-right"></i>Dodaj nową sesje
+        </a><br>
+        <a class="toggle-menu" href="#">
+          <i class="fa-solid fa-arrow-right"></i>Aktualizuj sesje
+        </a>
+      </div>
       <a href="#" id="clients-toggle">Klienci</a>
       <div id="clients-sub-menu" class="sub-menu hidden">
         <a class="toggle-menu" href="#" th:href="@{/client/all}">
@@ -37,9 +44,38 @@
     </div>
     <h2 class="client-name" th:text="|${client.firstName} ${client.lastName}|">Jan Kowalski</h2>
     <p class="client-info" th:text="|Email: ${client.email}|">email</p>
-    <p class="client-info" th:text="|Numer telefonu${client.phoneNumber}|">phone</p>
-    <p th:if="${photoSession == null}">Depozyt nie zapłacony </p>
-    <p th:if="${photoSession != null}">Depozyt zapłacony</p>
+    <p class="client-info" th:text="|Numer telefonu: ${client.phoneNumber}|">phone</p>
+
+    <p class="false" th:if="${photoSession.isDepositPaid == false}">Zaliczka nie zapłacona! </p>
+    <p class="true" th:if="${photoSession.isDepositPaid ==true}">Zaliczka zapłacona</p>
+
+    <p class="false" th:if="${photoSession.isDepositPaid ==true && photoSession.isPhotosSentToClientForChoose==false}">
+      Zdjęcia do wyboru nie wysłane!</p>
+    <p class="true" th:if="${photoSession.isDepositPaid ==true && photoSession.isPhotosSentToClientForChoose==true}">
+      Zdjęcia do wyboru wysłane</p>
+
+    <p class="false" th:if="${photoSession.isPhotosSentToClientForChoose ==true && photoSession.isPhotosChosenByClient==false}">
+      Zdjęcia nie wybrane przez klienta!</p>
+    <p class="true" th:if="${photoSession.isPhotosSentToClientForChoose ==true && photoSession.isPhotosChosenByClient==true}">
+      Zdjęcia wybrane przez klienta</p>
+
+    <p class="true" th:if="${photoSession.isPhotosSentToClientForChoose ==true && photoSession.isAdditionalPhotosChosenByClient == true}">
+      Klient wybrał dodatkowe zdjęcia!</p>
+
+    <p class="false" th:if="${photoSession.isPhotosChosenByClient==true && photoSession.isBasePaid ==false}">
+      Klient nie opłacił pakietu podstawowego!</p>
+    <p class="true" th:if="${photoSession.isPhotosChosenByClient==true && photoSession.isBasePaid ==true}">
+      Klient opłacił pakiet podstawowy</p>
+
+    <p class="false" th:if="${photoSession.isAdditionalPhotosChosenByClient == true &&  photoSession.isAdditionalPaid ==false}">
+      Klient nie opłacił dodatkowych zdjęć!</p>
+    <p class="true" th:if="${photoSession.isAdditionalPhotosChosenByClient == true && photoSession.isBasePaid ==true
+    && photoSession.isAdditionalPaid ==true}">
+      Klient opłacił dodatkowe zdjęcia</p>
+
+    <p class="false" th:if="${photoSession.isAdditionalPaid ==true && photoSession.isBasePaid ==true
+    && photoSession.isContractFinished == true}">Wszystko gotowe! Transakcja zakończona!</p>
+</main>
 </main>
 </body>
 </html>

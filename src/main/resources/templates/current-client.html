@@ -33,7 +33,7 @@
                     <i class="fa-solid fa-arrow-right"></i>Aktualizuj sesje
                 </a>
             </div>
-            <a href="#" id="clients-toggle">Klienci</a>
+            <a id="clients-toggle">Klienci</a>
             <div id="clients-sub-menu" class="sub-menu hidden">
                 <a class="toggle-menu" href="#" th:href="@{/client/all}">
                     <i class="fa-solid fa-arrow-right"></i>Wszyscy klienci
@@ -52,7 +52,7 @@
                         <h3 class="client-list-item-title">
                             <a href="#" th:href="@{${client.id}}" th:text="|Nazwisko: ${client.lastName}|">Nazwisko klienta</a>
                         </h3>
-                        <h3 th:text="|Imię: ${client.firstName}|">Imię kilenta</h3>
+                       <h3 th:text="|Imię: ${client.firstName}|">Imię kilenta</h3>
                         <h3 th:text="|Numer telefonu: ${client.phoneNumber}|">numer telefonu</h3>
                         <h3 th:text="|Email: ${client.email}|">email</h3>
                     </div>

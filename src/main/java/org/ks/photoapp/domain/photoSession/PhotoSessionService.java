@@ -8,9 +8,11 @@ import org.ks.photoapp.domain.photos.Photos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PhotoSessionService {
@@ -70,7 +72,12 @@ public class PhotoSessionService {
                 .map(PhotoSessionDtoMapper::map);
     }
 
-
+    public List<Client> getClientsByDate(LocalDateTime date) {
+        Optional<PhotoSession> sessions = photoSessionRepository.findPhotoSessionBySessionDate(date);
+        return sessions.stream()
+                .map(PhotoSession::getClient)
+                .collect(Collectors.toList());
+    }
 
     public Optional<PhotoSessionDto> getPhotoSessionByDate(LocalDateTime date){
         return photoSessionRepository.findPhotoSessionBySessionDate(date)

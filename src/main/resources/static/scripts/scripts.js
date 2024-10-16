@@ -25,7 +25,7 @@ function createCalendar() {
 
     for (let i = 1; i <= daysInMonth; i++) {
         if (i === currentDate) {
-            calendarEl.innerHTML += `<div class="day today">${i}</div>`; // Add 'today' class
+            calendarEl.innerHTML += `<div class="day today">${i}</div>`;
         } else {
             calendarEl.innerHTML += `<div class="day">${i}</div>`;
         }
@@ -35,11 +35,3 @@ function createCalendar() {
 
 createCalendar();
 
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('clients-toggle').addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default anchor click behavior
-        const subMenu = document.getElementById('clients-sub-menu');
-        subMenu.classList.toggle('hidden'); // Show or hide the sub-menu
-    });
-});

@@ -24,14 +24,21 @@
     <div class="user-menu">
             <h2>Menu użytkownika</h2>
             <a href="#" th:href="@{/home-page}">Kalendarz</a>
-        <a th:href="@{/payments}">Płatności</a>
-        <a href="#" th:href="@{/sessions}">Sesje</a>
-        <a id="clients-toggle">Klienci</a>
-        <div id="clients-sub-menu" class="sub-menu">
-            <a class="toggle-menu" href="#" th:href="@{/client/all}">
+        <a>Sesje</a>
+        <div class="sub-menu">
+            <a href="#">
+                <i class="fa-solid fa-arrow-right"></i>Dodaj nową sesje
+            </a><br>
+            <a class="toggle-menu" href="#">
+                <i class="fa-solid fa-arrow-right"></i>Aktualizuj sesje
+            </a>
+        </div>
+        <a>Klienci</a>
+        <div class="sub-menu">
+            <a href="#" th:href="@{/client/all}">
                 <i class="fa-solid fa-arrow-right"></i>Wszyscy klienci
             </a><br>
-            <a class="toggle-menu" href="#" th:href="@{/client/current}">
+            <a href="#" th:href="@{/client/current}">
                 <i class="fa-solid fa-arrow-right"></i>Aktualni klienci
             </a>
         </div>
