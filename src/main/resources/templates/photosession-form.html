@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj nową sesję</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <script defer src="../static/scripts/scripts.js" th:src="@{/scripts/scripts.js}"></script>
+  <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+</head>
+
+<body>
+<main class="main-content" layout:fragment="content">
+  <main class="main-content">
+    <div class="user-menu">
+      <h2>Menu użytkownika</h2>
+      <a href="#" th:href="@{/home-page}">Kalendarz</a>
+      <a>Sesje</a>
+      <div class="sub-menu">
+        <a href="#" th:href="@{/new-photosession}">
+          <i class="fa-solid fa-arrow-right"></i>Dodaj nową sesje
+        </a><br>
+        <a class="toggle-menu" href="#">
+          <i class="fa-solid fa-arrow-right"></i>Aktualizuj sesje
+        </a>
+        <a class="toggle-menu" href="#" th:href="@{all-photosessions}">
+          <i class="fa-solid fa-arrow-right"></i>Wyszukaj sesje
+        </a>
+      </div>
+      <a href="#" id="clients-toggle">Klienci</a>
+      <div id="clients-sub-menu" class="sub-menu hidden">
+        <a class="toggle-menu" href="#" th:href="@{/client/all}">
+          <i class="fa-solid fa-arrow-right"></i>Wszyscy klienci
+        </a><br>
+        <a class="toggle-menu" href="#" th:href="@{/client/current}">
+          <i class="fa-solid fa-arrow-right"></i>Aktualni klienci
+        </a>
+      </div>
+    </div>
+
+    <h2 class="list-heading">Dodaj nową sesję</h2>
+    <form action="" method="post" enctype="multipart/form-data" class="new-photosession-form" th:object="${photoSession}">
+      <label for="client">Dane klienta</label>
+      <select id="client" th:field="*{client}" required>
+        <option value="" hidden>Wybierz klienta</option>
+        <option th:each="client : ${clients}" th:value="${client.lastName} + ${client.firstName}" th:text="${client.lastName} + ${client.firstName}"></option>
+      </select>
+      <label for="session_type">Rodzaj sesji</label>
+      <select id="session_type" th:field="*{sessionType}" required>
+        <option value="" hidden>Wybierz rodzaj sesji</option>
+        <option th:each="sessionType : ${sessionTypes}" th:value="${sessionType}" th:text="${sessionType}"></option>
+      </select>
+      <label for="session_date">Data sesji</label>
+      <input type="date" id="session_date" placeholder="Data sesji" th:field="*{sessionDate}">
+      <button type="submit">Dodaj</button>
+    </form>
+  </main>
+</main>
+
+</body>
+</html>

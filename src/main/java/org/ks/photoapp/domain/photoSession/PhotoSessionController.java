@@ -1,8 +1,10 @@
 package org.ks.photoapp.domain.photoSession;
 
 import org.ks.photoapp.domain.client.Client;
+import org.ks.photoapp.domain.client.ClientService;
 import org.ks.photoapp.domain.client.dto.ClientDto;
 import org.ks.photoapp.domain.photoSession.dto.PhotoSessionDto;
+import org.ks.photoapp.domain.sessionType.SessionType;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,20 +16,25 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 
 @Controller
 public class PhotoSessionController {
 
+    private final ClientService clientService;
     PhotoSessionService photoSessionService;
+
+    public PhotoSessionController(ClientService clientService) {
+        this.clientService = clientService;
+    }
 
     @GetMapping("/all-photosessions")
     public String getAllPhotoSession(Model model) {
         List<PhotoSessionDto> photoSession = photoSessionService.getAllPhotoSession();
         model.addAttribute("photoSessions", photoSession);
-        return "pohtosessions";
+        return "all-pohtosessions";
     }
 
     @GetMapping("/photosession/{client}")
@@ -46,17 +53,27 @@ public class PhotoSessionController {
         return "photosession-data";
     }
 
+    @GetMapping("/photosession/new-photosession")
+    public String addPhotoSessionForm(Model model) {
+        List<ClientDto> allClients = clientService.getAllClients();
+        List<SessionType> sessionType = Arrays.stream(SessionType.values()).toList();
+        model.addAttribute("clients", allClients);
+        model.addAttribute("sessionTypes", sessionType);
+        PhotoSessionDto photoSession = new PhotoSessionDto();
+        model.addAttribute("photoSession", photoSession);
+        return "photosession-form";
+    }
+
     @PostMapping("/photosession/new-photosession")
-    public String newPhotoSession(PhotoSessionDto photoSession) {
+    public String addPhotoSession(PhotoSessionDto photoSession, RedirectAttributes redirectAttributes) {
         photoSessionService.createNewSession(photoSession);
-        System.out.println("Dodano nową sesję");
+        redirectAttributes.addFlashAttribute("message", "Dodano nową sesję");
         return "redirect:/all-photosessions";
     }
 
     @GetMapping("/photosession/delete")
     public String deletePhotoSession(@RequestParam long id) {
         photoSessionService.deleteSession(id);
-        System.out.println("Usunięto sesję");
         return "redirect:/all-photosessions";
     }
 
@@ -67,10 +84,5 @@ public class PhotoSessionController {
         return "redirect:/photosession/{id}";
     }
 
-    @GetMapping("/{date}")
-    public List<Client> getClientsByDate(@PathVariable String date) {
-        LocalDateTime localDate = LocalDateTime.parse(date);
-        return photoSessionService.getClientsByDate(localDate);
-    }
 
 }

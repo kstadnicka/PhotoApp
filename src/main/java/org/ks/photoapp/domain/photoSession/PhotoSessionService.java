@@ -2,7 +2,9 @@ package org.ks.photoapp.domain.photoSession;
 
 
 import org.ks.photoapp.domain.client.Client;
+import org.ks.photoapp.domain.client.ClientRepository;
 import org.ks.photoapp.domain.payment.Payment;
+import org.ks.photoapp.domain.payment.PaymentRepository;
 import org.ks.photoapp.domain.photoSession.dto.PhotoSessionDto;
 import org.ks.photoapp.domain.photos.Photos;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,14 @@ import java.util.stream.Collectors;
 
 @Service
 public class PhotoSessionService {
+    private final ClientRepository clientRepository;
+    private final PaymentRepository paymentRepository;
     PhotoSessionRepository photoSessionRepository;
 
-    public PhotoSessionService(PhotoSessionRepository photoSessionRepository) {
+    public PhotoSessionService(PhotoSessionRepository photoSessionRepository, ClientRepository clientRepository, PaymentRepository paymentRepository) {
         this.photoSessionRepository = photoSessionRepository;
+        this.clientRepository = clientRepository;
+        this.paymentRepository = paymentRepository;
     }
 
     public List<PhotoSessionDto> getAllPhotoSession() {
@@ -34,11 +40,11 @@ public class PhotoSessionService {
         return photoSession.map(PhotoSessionDtoMapper::map);
     }
 
-    public void createNewSession(PhotoSessionDto photoSessionDto) {
+    public void createNewSession(PhotoSessionDto photoSessionToSave) {
         Payment payment = new Payment();
         Photos photos = new Photos();
-        Client client = new Client();
         PhotoSession photoSession = new PhotoSession();
+        Client client = clientRepository.findByLastName(photoSessionToSave.getClient().getLastName()).orElse(new Client());
         photoSession.setClient(client);
         photoSession.setPayment(payment);
         photoSession.setPhotos(photos);

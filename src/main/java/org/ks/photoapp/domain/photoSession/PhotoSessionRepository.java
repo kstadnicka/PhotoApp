@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface PhotoSessionRepository extends CrudRepository <PhotoSession,Long> {
 
-    @Override
+   @Override
     List<PhotoSession> findAll();
     Optional<PhotoSession> findPhotoSessionByClientId(Long clientId);    Optional<PhotoSession> findPhotoSessionById(long id);
     Optional<PhotoSession> findPhotoSessionByClient(Client client);

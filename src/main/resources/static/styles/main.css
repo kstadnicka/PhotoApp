@@ -340,3 +340,23 @@ a{
 .false{
     color: red;
 }
+
+.new-photosession-form>input,
+.new-photosession-form>textarea,
+.new-photosession-form>button,
+.new-photosession-form>select{
+    font-size: 1.2rem;
+    color: black;
+    padding: 8px;
+ }
+
+.new-photosession-form>select{
+    color: black;
+}
+
+
+.new-photosession-form>input[type=checkbox]{
+    transform: scale(1.5);
+    margin-left: 5px;
+}
+

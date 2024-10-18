@@ -22,6 +22,9 @@ public class PhotoSessionDto {
     Boolean isAdditionalPaid;
     Boolean isContractFinished;
 
+    public PhotoSessionDto() {
+    }
+
     public PhotoSessionDto(Client client, Long sessionPhotoId, LocalDateTime sessionDate, SessionType sessionType,
                            Boolean isDepositPaid, Boolean isBasePaid, Boolean isPhotosSentToClientForChoose,
                            Boolean isPhotosChosenByClient, Boolean isAdditionalPhotosChosenByClient,
