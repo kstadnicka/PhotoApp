@@ -30,6 +30,7 @@ public class PhotoSessionService {
     public List<PhotoSessionDto> getAllPhotoSession() {
         List<PhotoSession> photoSessions = photoSessionRepository.findAll();
         return photoSessions.stream()
+                .filter(photoSession -> !photoSession.isContractFinished)
                 .map(PhotoSessionDtoMapper::map)
                 .toList();
     }
