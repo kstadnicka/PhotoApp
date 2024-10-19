@@ -8,7 +8,10 @@ import org.ks.photoapp.domain.photos.Photos;
 import org.ks.photoapp.domain.sessionType.SessionType;
 
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
+
 @Entity
 @Data
 public class PhotoSession {
@@ -31,5 +34,5 @@ public class PhotoSession {
 
     public PhotoSession() {
     }
-    
+
 }

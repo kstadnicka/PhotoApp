@@ -26,15 +26,17 @@ public class PhotoSessionController {
     private final ClientService clientService;
     PhotoSessionService photoSessionService;
 
-    public PhotoSessionController(ClientService clientService) {
+    public PhotoSessionController(ClientService clientService, PhotoSessionService photoSessionService) {
         this.clientService = clientService;
+        this.photoSessionService = photoSessionService;
     }
 
     @GetMapping("/all-photosessions")
     public String getAllPhotoSession(Model model) {
-        List<PhotoSessionDto> photoSession = photoSessionService.getAllPhotoSession();
-        model.addAttribute("photoSessions", photoSession);
-        return "all-pohtosessions";
+        List<PhotoSessionDto> photoSessions = photoSessionService.getAllPhotoSession();
+        model.addAttribute("heading", "Aktualne sesje");
+        model.addAttribute("photoSessions", photoSessions);
+        return "all-photosessions";
     }
 
     @GetMapping("/photosession/{client}")
@@ -55,9 +57,9 @@ public class PhotoSessionController {
 
     @GetMapping("/photosession/new-photosession")
     public String addPhotoSessionForm(Model model) {
-        List<ClientDto> allClients = clientService.getAllClients();
+        List<ClientDto> clients = clientService.getAllClients();
         List<SessionType> sessionType = Arrays.stream(SessionType.values()).toList();
-        model.addAttribute("clients", allClients);
+        model.addAttribute("clients", clients);
         model.addAttribute("sessionTypes", sessionType);
         PhotoSessionDto photoSession = new PhotoSessionDto();
         model.addAttribute("photoSession", photoSession);

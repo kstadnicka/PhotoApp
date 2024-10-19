@@ -68,7 +68,8 @@ a{
     margin-top: 1rem;
 }
 
-.client-list>h2{
+.client-list>h2,
+.photosession-list>h2{
     text-align: center;
     margin: auto;
 }
@@ -80,7 +81,8 @@ a{
     margin: 0.8rem 0;
 }
 
-.client-list {
+.client-list,
+.photosession-list{
     list-style-type: none;
     padding: 30px;
     display: flex;
@@ -89,7 +91,8 @@ a{
     text-align: center;
 }
 
-.client-list-item {
+.client-list-item,
+.photosession-list-item{
     width: 100%;
     max-width: 600px;
     display: flex;
@@ -97,7 +100,8 @@ a{
     text-align: left;
 }
 
-.client-list-item-card{
+.client-list-item-card,
+.photosession-list-item-card{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -105,19 +109,22 @@ a{
 
 }
 
-.client-list-item-content >*{
+.client-list-item-content >*,
+.photosession-list-item-content>*{
     margin-right: 15px;
     color: #e1dfdf;
     margin-bottom: 15px;
 
 }
 
-.client-list-item-title >a{
+.client-list-item-title >a,
+.photosession-list-item-title>a{
     font-size: 1.6rem;
     color: darkgrey;
 }
 
-.client-list-item-title a:hover {
+.client-list-item-title a:hover,
+.photosession-list-item-title>a:hover{
     text-decoration: underline;
 }
 

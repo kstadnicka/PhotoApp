@@ -25,14 +25,11 @@
       <a href="#" th:href="@{/home-page}">Kalendarz</a>
       <a>Sesje</a>
       <div class="sub-menu">
-        <a href="#">
+        <a href="#" th:href="@{/new-photosession}">
           <i class="fa-solid fa-arrow-right"></i>Dodaj nową sesje
         </a><br>
-        <a class="toggle-menu" href="#">
-          <i class="fa-solid fa-arrow-right"></i>Aktualizuj sesje
-        </a>
-        <a class="toggle-menu" href="#">
-          <i class="fa-solid fa-arrow-right"></i>Wyszukaj sesje
+        <a class="toggle-menu" href="#" th:href="@{/all-photosessions}">
+          <i class="fa-solid fa-arrow-right"></i>Wyszukaj sesję
         </a>
       </div>
       <a href="#" id="clients-toggle">Klienci</a>
@@ -57,7 +54,8 @@
     <p class="true" th:if="${photoSession.isDepositPaid ==true && photoSession.isPhotosSentToClientForChoose==true}">
       Zdjęcia do wyboru wysłane</p>
 
-    <p class="false" th:if="${photoSession.isPhotosSentToClientForChoose ==true && photoSession.isPhotosChosenByClient==false}">
+    <p class="false" th:if="${photoSession.isDepositPaid == true && photoSession.isPhotosSentToClientForChoose ==true
+    && photoSession.isPhotosChosenByClient==false}">
       Zdjęcia nie wybrane przez klienta!</p>
     <p class="true" th:if="${photoSession.isPhotosSentToClientForChoose ==true && photoSession.isPhotosChosenByClient==true}">
       Zdjęcia wybrane przez klienta</p>

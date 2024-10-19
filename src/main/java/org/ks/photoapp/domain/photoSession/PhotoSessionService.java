@@ -2,6 +2,7 @@ package org.ks.photoapp.domain.photoSession;
 
 
 import org.ks.photoapp.domain.client.Client;
+import org.ks.photoapp.domain.client.ClientDtoMapper;
 import org.ks.photoapp.domain.client.ClientRepository;
 import org.ks.photoapp.domain.payment.Payment;
 import org.ks.photoapp.domain.payment.PaymentRepository;
@@ -19,17 +20,15 @@ import java.util.stream.Collectors;
 @Service
 public class PhotoSessionService {
     private final ClientRepository clientRepository;
-    private final PaymentRepository paymentRepository;
     PhotoSessionRepository photoSessionRepository;
 
-    public PhotoSessionService(PhotoSessionRepository photoSessionRepository, ClientRepository clientRepository, PaymentRepository paymentRepository) {
+    public PhotoSessionService(PhotoSessionRepository photoSessionRepository, ClientRepository clientRepository) {
         this.photoSessionRepository = photoSessionRepository;
         this.clientRepository = clientRepository;
-        this.paymentRepository = paymentRepository;
     }
 
     public List<PhotoSessionDto> getAllPhotoSession() {
-        List<PhotoSession> photoSessions = (List<PhotoSession>) photoSessionRepository.findAll();
+        List<PhotoSession> photoSessions = photoSessionRepository.findAll();
         return photoSessions.stream()
                 .map(PhotoSessionDtoMapper::map)
                 .toList();

@@ -26,14 +26,11 @@
             <a href="#" th:href="@{/home-page}">Kalendarz</a>
             <a>Sesje</a>
             <div class="sub-menu">
-                <a href="#">
+                <a href="#" th:href="@{/new-photosession}">
                     <i class="fa-solid fa-arrow-right"></i>Dodaj nową sesje
                 </a><br>
-                <a class="toggle-menu" href="#">
-                    <i class="fa-solid fa-arrow-right"></i>Aktualizuj sesje
-                </a>
-                <a class="toggle-menu" href="#">
-                    <i class="fa-solid fa-arrow-right"></i>Wyszukaj sesje
+                <a class="toggle-menu" href="#" th:href="@{/all-photosessions}">
+                    <i class="fa-solid fa-arrow-right"></i>Wyszukaj sesję
                 </a>
             </div>
             <a id="clients-toggle">Klienci</a>
@@ -49,7 +46,7 @@
         <h2 class="list-heading" th:text="${heading}">Wszyscy klienci</h2>
         <ul class="client-list" th:remove="all-but-first">
             <li class="client-list-item" th:each="client: ${clients}">
-                <a href="#" th:href="@{|client/${client.id}|}"></a>
+                <a href="#" th:href="@{client/${client.id}}"></a>
                 <div class="client-list-item-card">
                     <div class="client-list-item-content">
                         <h3 class="client-list-item-title">
