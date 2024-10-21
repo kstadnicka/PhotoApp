@@ -142,6 +142,10 @@ a{
     color: red;
     font-style: italic;
 }
+
+.log:hover{
+    text-decoration: underline;
+}
 .login-form{
     font-size: 1rem;
     margin: 0.5rem auto;
@@ -367,3 +371,47 @@ a{
     margin-left: 5px;
 }
 
+.session-update{
+    font-size: 1.4rem;
+    color: #3a3ad6;
+}
+
+.session-delete{
+    color: red;
+    font-size: 1.4rem;
+}
+
+.session-delete:hover,
+.session-update:hover{
+    text-decoration: underline;
+}
+
+.delete-question-yes,
+.delete-question-no{
+    margin: 1.5rem auto;
+    text-align: center;
+    font-size: 1.5rem;
+    display: block;
+    color: red;
+}
+
+.delete-question-no{
+    color: white;
+}
+
+.delete-question-yes:hover,
+.delete-question-no:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.delete-question-yes{
+    background-color: transparent;
+    border: none;
+}
+
+.delete-question{
+    font-size: 1.7rem;
+    margin: 2rem auto;
+    color: white;
+}

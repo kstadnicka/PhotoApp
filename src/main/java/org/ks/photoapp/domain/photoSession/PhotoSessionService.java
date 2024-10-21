@@ -55,7 +55,7 @@ public class PhotoSessionService {
     }
 
     public void deleteSession(long id) {
-        photoSessionRepository.deletePhotoSessionById(id);
+        photoSessionRepository.deleteById(id);
     }
 
     public void updateSession(PhotoSessionDto photoSessionDto, long id){

@@ -5,19 +5,19 @@ import org.ks.photoapp.domain.client.ClientService;
 import org.ks.photoapp.domain.client.dto.ClientDto;
 import org.ks.photoapp.domain.photoSession.dto.PhotoSessionDto;
 import org.ks.photoapp.domain.sessionType.SessionType;
+import org.ks.photoapp.domain.user.dto.UserRegistrationDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.ks.photoapp.domain.client.ClientController.NOTIFICATION_ATTRIBUTE;
 
 
 @Controller
@@ -73,18 +73,34 @@ public class PhotoSessionController {
         return "redirect:/all-photosessions";
     }
 
-    @GetMapping("/photosession/delete")
-    public String deletePhotoSession(@RequestParam long id) {
+
+    @GetMapping("/delete-photosession/{id}")
+    public String delete(Model model, @PathVariable long id) {
+        model.addAttribute("id", id);
+        return "delete-photosession";
+    }
+
+
+    @PostMapping("/delete-photosession/{id}")
+    public String deletePhotoSession(@PathVariable long id, RedirectAttributes redirectAttributes) {
         photoSessionService.deleteSession(id);
+        redirectAttributes.addFlashAttribute(NOTIFICATION_ATTRIBUTE, "Usunięto sesję");
         return "redirect:/all-photosessions";
     }
-
-    @PostMapping("/photosession/update")
-    public String updatePhotosession(@RequestParam long id, PhotoSessionDto photoSession){
-        photoSessionService.updateSession(photoSession,id);
-        System.out.println("Dane zostały zaktualinowane");
-        return "redirect:/photosession/{id}";
-    }
-
-
 }
+
+//    @GetMapping("/delete-photosession/{id}")
+//    public String deletePhotoSession(@PathVariable long id, PhotoSessionDto photoSessionDto) {
+//        photoSessionService.deleteSession(id, photoSessionDto);
+//        return "redirect:/all-photosessions";
+//    }
+
+
+//    @PostMapping("/photosession/update")
+//    public String updatePhotosession(@RequestParam long id, PhotoSessionDto photoSession){
+//        photoSessionService.updateSession(photoSession,id);
+//        System.out.println("Dane zostały zaktualinowane");
+//        return "redirect:/photosession/{id}";
+//    }
+
+
