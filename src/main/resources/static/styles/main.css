@@ -415,3 +415,58 @@ a{
     margin: 2rem auto;
     color: white;
 }
+
+#session_type {
+    color: black;
+    background-color: white;
+}
+
+
+#session_type option,
+#client option{
+    background-color: white;
+    color: black;
+}
+
+
+input {
+    color: black;
+}
+
+
+form {
+    margin: 20px;
+}
+
+.list-heading {
+    margin-bottom: 10px;
+}
+
+
+
+input[type="text"],
+input[type="email"],
+input[type="datetime-local"],
+select {
+    margin-bottom: 15px;
+}
+
+input[type="checkbox"] {
+    margin-top: 15px;
+    text-align: center;
+}
+
+button {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: red;
+
+}
+
+.back{
+    color: white;
+    font-size: 1.2rem;
+    margin-left: 14rem;
+    margin-bottom: 5rem;
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>PhotoApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <script defer src="../static/scripts/scripts.js" th:src="@{/scripts/scripts.js}"></script>
+    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+</head>
+
+<body>
+<main class="main-content" layout:fragment="content">
+    <main class="main-content">
+        <div class="user-menu">
+            <h2>Menu użytkownika</h2>
+            <a href="#" th:href="@{/home-page}">Kalendarz</a>
+            <a>Sesje</a>
+            <div class="sub-menu">
+                <a href="#" th:href="@{/new-photosession}">
+                    <i class="fa-solid fa-arrow-right"></i>Dodaj nową sesję
+                </a><br>
+                <a class="toggle-menu" href="#" th:href="@{/all-photosessions}">
+                    <i class="fa-solid fa-arrow-right"></i>Wyszukaj sesję
+                </a>
+            </div>
+            <a id="clients-toggle">Klienci</a>
+            <div id="clients-sub-menu" class="sub-menu hidden">
+                <a class="toggle-menu" href="#" th:href="@{/client/all}">
+                    <i class="fa-solid fa-arrow-right"></i>Wszyscy klienci
+                </a><br>
+                <a class="toggle-menu" href="#" th:href="@{/client/current}">
+                    <i class="fa-solid fa-arrow-right"></i>Aktualni klienci
+                </a>
+            </div>
+        </div>
+
+        <h2 class="list-heading">Aktualizuj sesję</h2>
+        <form th:action="@{/update-photosession/{id}(id=${id})}" method="post">
+            <label for="session_type">Rodzaj sesji</label>
+            <select id="session_type" th:field="*{sessionTypes}" required>
+                <option value="" hidden>Wybierz rodzaj sesji</option>
+                <option th:each="sessionType : ${sessionTypes}" th:value="${sessionType.getType()}" th:text="${sessionType.getType()}"></option>
+            </select>
+            <div>
+                <label for="sessionDate">Data sesji</label>
+                <input type="datetime-local" id="sessionDate"
+                       th:value="${#temporals.format(photoSession.sessionDate, 'yyyy-MM-ddHH:mm')}"/>
+            </div>
+
+            <div>
+                <label for="isDepositPaid">Zaliczka zapłacona</label>
+                <input type="checkbox" id="isDepositPaid" name="isDepositPaid" th:checked="${photoSession.payment.isDepositPaid}" />
+            </div>
+            <div>
+                <label for="isBasePaid">Sesja opłacona</label>
+                <input type="checkbox" id="isBasePaid" name="isBasePaid" th:checked="${photoSession.payment.isBasePaid}" />
+            </div>
+            <div>
+                <label for="isAdditionalPaid">Dodatkowe zdjęcia opłacone</label>
+                <input type="checkbox" id="isAdditionalPaid" name="isAdditionalPaid" th:checked="${photoSession.payment.isAdditionalPaid}" />
+            </div>
+
+            <h2 class="list-heading">Dane klienta</h2>
+            <div>
+                <label for="clientLastName">Nazwisko</label>
+                <input type="text" id="clientLastName" name="client.lastName" th:value="${photoSession.client.lastName}" required/>
+            </div>
+            <div>
+                <label for="clientFirstName">Imię</label>
+                <input type="text" id="clientFirstName" name="client.firstName" th:value="${photoSession.client.firstName}" required/>
+            </div>
+            <div>
+                <label for="clientEmail">Email</label>
+                <input type="email" id="clientEmail" name="client.email" th:value="${photoSession.client.email}" required/>
+            </div>
+            <div>
+                <label for="clientNumber">Numer telefonu</label>
+                <input type="text" id="clientNumber" name="client.number" th:value="${photoSession.client.phoneNumber}" required/>
+            </div>
+
+            <button type="submit">Aktualizuj sesję</button>
+        </form>
+
+        <a class="back" th:href="@{/all-photosessions}">Wróc do wszystkich sesji</a>
+    </main>
+</main>
+</body>
+</html>

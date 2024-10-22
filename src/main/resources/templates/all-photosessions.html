@@ -27,7 +27,7 @@
             <a>Sesje</a>
             <div class="sub-menu">
                 <a href="#" th:href="@{/new-photosession}">
-                    <i class="fa-solid fa-arrow-right"></i>Dodaj nową sesje
+                    <i class="fa-solid fa-arrow-right"></i>Dodaj nową sesję
                 </a><br>
                 <a class="toggle-menu" href="#" th:href="@{/all-photosessions}">
                     <i class="fa-solid fa-arrow-right"></i>Wyszukaj sesję
@@ -55,7 +55,7 @@
                         <h3 th:text="|Imię: ${photoSession.client.firstName}|">Imię kilenta</h3>
                         <h3 th:text="|Rodzaj sesji: ${photoSession.sessionType.getType()}|">Rodzaj sesji</h3>
                         <h3 th:text="|Data sesji: ${photoSession.sessionDate}|">Data sesji</h3>
-                        <a class="session-update" href="#">Aktualizuj sesję</a>
+                        <a class="session-update" href="#" th:href="@{|/update-photosession/${photoSession.sessionPhotoId}|}">Aktualizuj sesję</a>
                         <a class="session-delete" th:href="@{|/delete-photosession/${photoSession.sessionPhotoId}|}">Usuń sesję</a>
                     </div>
                 </div>

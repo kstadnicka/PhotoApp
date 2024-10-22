@@ -35,6 +35,11 @@ public class PhotoSessionService {
                 .toList();
     }
 
+    public PhotoSession findById(Long id) {
+        Optional<PhotoSession> optionalPhotoSession = photoSessionRepository.findById(id);
+        return optionalPhotoSession.orElseThrow(() -> new NullPointerException("PhotoSession not found with ID: " + id));
+    }
+
     public Optional<PhotoSessionDto> getPhotoSessionByClientId(Long clientId) {
         Optional<PhotoSession> photoSession = photoSessionRepository.findPhotoSessionByClientId(clientId);
         return photoSession.map(PhotoSessionDtoMapper::map);
@@ -95,4 +100,6 @@ public class PhotoSessionService {
                 .map(PhotoSessionDtoMapper::map)
                 .toList();
     }
+
+
 }
