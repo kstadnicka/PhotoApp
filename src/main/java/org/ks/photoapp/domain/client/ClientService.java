@@ -23,7 +23,8 @@ public class ClientService {
 
 
     public List<ClientDto> getAllCurrentClients() {
-        return photoSessionRepository.findAll().stream()
+        List<PhotoSession> photoSessions = (List<PhotoSession>) photoSessionRepository.findAll();
+        return photoSessions.stream()
                 .filter(session -> !session.getIsContractFinished())
                 .map(PhotoSession::getClient)
                 .distinct()

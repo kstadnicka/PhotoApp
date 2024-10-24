@@ -28,7 +28,7 @@ public class PhotoSessionController {
 
     @GetMapping("/all-photosessions")
     public String getAllPhotoSession(Model model) {
-        List<PhotoSessionDto> photoSessions = photoSessionService.getAllPhotoSession();
+        List<PhotoSessionDto> photoSessions = photoSessionService.getAll();
         model.addAttribute("heading", "Aktualne sesje");
         model.addAttribute("photoSessions", photoSessions);
         return "all-photosessions";

@@ -27,13 +27,14 @@ public class PhotoSessionService {
         this.clientRepository = clientRepository;
     }
 
-    public List<PhotoSessionDto> getAllPhotoSession() {
-        List<PhotoSession> photoSessions = photoSessionRepository.findAll();
+    public List <PhotoSessionDto> getAll() {
+        List<PhotoSession> photoSessions = (List<PhotoSession>) photoSessionRepository.findAll();
         return photoSessions.stream()
                 .filter(photoSession -> !photoSession.isContractFinished)
                 .map(PhotoSessionDtoMapper::map)
                 .toList();
     }
+
 
     public PhotoSession findById(Long id) {
         Optional<PhotoSession> optionalPhotoSession = photoSessionRepository.findById(id);
