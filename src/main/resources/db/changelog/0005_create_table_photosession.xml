@@ -10,7 +10,7 @@
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="session_date" type="TIMESTAMP"/>
-            <column name="session_type" type="VARCHAR"/>
+            <column name="session_type" type="VARCHAR(255)"/>
             <column name="client_id" type="BIGINT">
                 <constraints nullable="false"
                              foreignKeyName="fk_photosession_client"

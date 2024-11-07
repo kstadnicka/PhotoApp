@@ -12,10 +12,10 @@
     <include file="0005_create_table_photosession.xml" relativeToChangelogFile="true"/>
     <include file="0006_create_table_users.xml" relativeToChangelogFile="true"/>
 
-    <include file="../testdata/0001_client.sql" relativeToChangelogFile="true" context="dev"/>
-    <include file="../testdata/0002_payment.sql" relativeToChangelogFile="true" context="dev"/>
-    <include file="../testdata/0003_photos.sql" relativeToChangelogFile="true" context="dev"/>
-    <include file="../testdata/0004_session_type.sql" relativeToChangelogFile="true" context="dev"/>
-    <include file="../testdata/0005_photo_session.sql" relativeToChangelogFile="true" context="dev"/>
-    <include file="../testdata/0006_users.sql" relativeToChangelogFile="true" context="dev"/>
+    <include file="../testdata/0001_client.sql" relativeToChangelogFile="true"/>
+    <include file="../testdata/0002_payment.sql" relativeToChangelogFile="true"/>
+    <include file="../testdata/0003_photos.sql" relativeToChangelogFile="true"/>
+    <include file="../testdata/0004_session_type.sql" relativeToChangelogFile="true"/>
+    <include file="../testdata/0005_photo_session.sql" relativeToChangelogFile="true"/>
+    <include file="../testdata/0006_users.sql" relativeToChangelogFile="true" />
 </databaseChangeLog>

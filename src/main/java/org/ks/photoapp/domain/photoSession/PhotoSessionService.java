@@ -4,6 +4,7 @@ package org.ks.photoapp.domain.photoSession;
 import org.ks.photoapp.domain.client.Client;
 import org.ks.photoapp.domain.client.ClientDtoMapper;
 import org.ks.photoapp.domain.client.ClientRepository;
+import org.ks.photoapp.domain.client.ClientService;
 import org.ks.photoapp.domain.payment.Payment;
 import org.ks.photoapp.domain.payment.PaymentRepository;
 import org.ks.photoapp.domain.photoSession.dto.PhotoSessionDto;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 public class PhotoSessionService {
     private final ClientRepository clientRepository;
     PhotoSessionRepository photoSessionRepository;
+
 
     public PhotoSessionService(PhotoSessionRepository photoSessionRepository, ClientRepository clientRepository) {
         this.photoSessionRepository = photoSessionRepository;
@@ -50,7 +52,7 @@ public class PhotoSessionService {
         Payment payment = new Payment();
         Photos photos = new Photos();
         PhotoSession photoSession = new PhotoSession();
-        Client client = clientRepository.findByLastName(photoSessionToSave.getClient().getLastName()).orElse(new Client());
+        Client client = clientRepository.findById(photoSessionToSave.getClient().getId()).orElse(new Client());
         photoSession.setClient(client);
         photoSession.setPayment(payment);
         photoSession.setPhotos(photos);
@@ -64,20 +66,52 @@ public class PhotoSessionService {
         photoSessionRepository.deleteById(id);
     }
 
+
     public void updateSession(PhotoSessionDto photoSessionDto, long id){
-        PhotoSession photoSessionToUpdate = photoSessionRepository.findPhotoSessionById(id).orElseGet(PhotoSession::new);
-        photoSessionToUpdate.setClient(photoSessionDto.getClient());
+        PhotoSession photoSessionToUpdate = photoSessionRepository.findPhotoSessionById(id)
+                .orElseGet(PhotoSession::new);
+        if (photoSessionDto.getClient() == null || photoSessionDto.getClient().getId() == null) {
+            throw new IllegalArgumentException("Client ID cannot be null");
+        }
+        Client client = clientRepository.findById(photoSessionDto.getClient().getId()).orElse(new Client());
+        photoSessionToUpdate.setClient(client);
         photoSessionToUpdate.setSessionDate(photoSessionDto.getSessionDate());
         photoSessionToUpdate.setSessionType(photoSessionDto.getSessionType());
-        photoSessionToUpdate.getPayment().setIsDepositPaid(photoSessionDto.getIsDepositPaid());
-        photoSessionToUpdate.getPayment().setIsBasePaid(photoSessionDto.getIsBasePaid());
-        photoSessionToUpdate.getPhotos().setSentToClientForChoose(photoSessionDto.getIsPhotosSentToClientForChoose());
-        photoSessionToUpdate.getPhotos().setChosenByClient(photoSessionDto.getIsPhotosChosenByClient());
-        photoSessionToUpdate.getPhotos().setAdditionalChosenByClient(photoSessionDto.getIsAdditionalPhotosChosenByClient());
-        photoSessionToUpdate.getPayment().setIsAdditionalPaid(photoSessionDto.getIsAdditionalPaid());
+        if (photoSessionToUpdate.getPayment() == null) {
+            Payment newPayment = new Payment();
+            photoSessionToUpdate.setPayment(newPayment);
+        }
+        Payment payment = photoSessionToUpdate.getPayment();
+        payment.setIsDepositPaid(photoSessionDto.getIsDepositPaid());
+        payment.setIsBasePaid(photoSessionDto.getIsBasePaid());
+        payment.setIsAdditionalPaid(photoSessionDto.getIsAdditionalPaid());
+        if (photoSessionToUpdate.getPhotos() == null) {
+            Photos newPhotos = new Photos();
+            photoSessionToUpdate.setPhotos(newPhotos);
+        }
+        Photos photos = photoSessionToUpdate.getPhotos();
+        photos.setSentToClientForChoose(photoSessionDto.getIsPhotosSentToClientForChoose());
+        photos.setChosenByClient(photoSessionDto.getIsPhotosChosenByClient());
+        photos.setAdditionalChosenByClient(photoSessionDto.getIsAdditionalPhotosChosenByClient());
         photoSessionToUpdate.setIsContractFinished(photoSessionDto.getIsContractFinished());
         photoSessionRepository.save(photoSessionToUpdate);
     }
+
+//
+//    public void updateSession(PhotoSessionDto photoSessionDto, long id){
+//        PhotoSession photoSessionToUpdate = photoSessionRepository.findPhotoSessionById(id).orElseGet(PhotoSession::new);
+//        photoSessionToUpdate.setClient(photoSessionDto.getClient());
+//        photoSessionToUpdate.setSessionDate(photoSessionDto.getSessionDate());
+//        photoSessionToUpdate.setSessionType(photoSessionDto.getSessionType());
+//        photoSessionToUpdate.getPayment().setIsDepositPaid(photoSessionDto.getIsDepositPaid());
+//        photoSessionToUpdate.getPayment().setIsBasePaid(photoSessionDto.getIsBasePaid());
+//        photoSessionToUpdate.getPhotos().setSentToClientForChoose(photoSessionDto.getIsPhotosSentToClientForChoose());
+//        photoSessionToUpdate.getPhotos().setChosenByClient(photoSessionDto.getIsPhotosChosenByClient());
+//        photoSessionToUpdate.getPhotos().setAdditionalChosenByClient(photoSessionDto.getIsAdditionalPhotosChosenByClient());
+//        photoSessionToUpdate.getPayment().setIsAdditionalPaid(photoSessionDto.getIsAdditionalPaid());
+//        photoSessionToUpdate.setIsContractFinished(photoSessionDto.getIsContractFinished());
+//        photoSessionRepository.save(photoSessionToUpdate);
+//    }
 
     public Optional<PhotoSessionDto> getPhotoSessionByClient(Client client){
         return photoSessionRepository.findPhotoSessionByClient(client)

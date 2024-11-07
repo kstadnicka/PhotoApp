@@ -46,19 +46,37 @@
 
     <h2 class="list-heading">Dodaj nową sesję</h2>
     <form action="" method="post" enctype="multipart/form-data" class="new-photosession-form" th:object="${photoSession}">
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+      <div>
       <label for="client">Dane klienta</label>
       <select id="client" th:field="*{client}" required>
         <option value="" hidden>Wybierz klienta</option>
-        <option th:each="client : ${clients}" th:value="${client.lastName} + ${client.firstName}" th:text="${client.lastName} + ${client.firstName}"></option>
+        <option th:each="client : ${clients}" th:value="${client.getId()}" th:text="${client.getLastName()} + ${client.getFirstName()}"></option>
       </select>
+     </div>
+      <div>
+        <a class="new_client" href="#" th:href="@{/client/new}">
+         Dodaj nowego klienta
+        </a>
+      </div>
+      <div>
       <label for="session_type">Rodzaj sesji</label>
       <select id="session_type" th:field="*{sessionType}" required>
         <option value="" hidden>Wybierz rodzaj sesji</option>
         <option th:each="sessionType : ${sessionTypes}" th:value="${sessionType.getType()}" th:text="${sessionType.getType()}"></option>
       </select>
+      </div>
+      <div>
       <label for="session_date">Data sesji</label>
-      <input type="date" id="session_date" placeholder="Data sesji" th:field="*{sessionDate}">
-      <button type="submit">Dodaj</button>
+      <input type="datetime-local" id="session_date" th:field="*{sessionDate}" required />
+      </div>
+      <div>
+      <input type="checkbox" id="deposit-paid" th:field="*{isDepositPaid}" />
+      <label for="deposit-paid">Zaliczka zapłacona</label>
+
+      </div>
+      <button type="submit" class="add_photosession">Dodaj</button>
     </form>
   </main>
 </main>

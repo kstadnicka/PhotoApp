@@ -372,6 +372,13 @@ a{
     margin-left: 5px;
 }
 
+.new_client{
+    color: red;
+}
+.new_client:hover{
+    text-decoration: underline;
+}
+
 .session-update{
     font-size: 1.4rem;
     color: #3a3ad6;
@@ -417,7 +424,12 @@ a{
     color: white;
 }
 
-#session_type {
+#session_type{
+    margin-top: 1rem;
+}
+
+#session_type,
+#client{
     color: black;
     background-color: white;
 }
@@ -456,12 +468,12 @@ input[type="checkbox"] {
     text-align: center;
 }
 
-button {
+.add_photosession{
     margin-top: 20px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: white;
     background-color: red;
-
+    text-align: center;
 }
 
 .back{
