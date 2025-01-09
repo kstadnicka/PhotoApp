@@ -1,7 +1,6 @@
 package org.ks.photoapp.domain.user;
 
-import org.ks.photoapp.domain.user.dto.UserCredentialsDto;
-import org.ks.photoapp.domain.user.dto.UserRegistrationDto;
+import org.ks.photoapp.domain.user.dto.UserDto;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,16 +18,16 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Optional<UserCredentialsDto> findUserByEmail(String email) {
+    public Optional<UserDto> findUserByEmail(String email) {
         return userRepository.findByEmail(email)
                 .map(UserCredentialsDtoMapper::map);
     }
 
     @Transactional
-    public void registerUser(UserRegistrationDto userRegistrationDto) {
+    public void registerUser(UserDto userDto) {
         User user = new User();
-        user.setEmail(userRegistrationDto.getEmail());
-        user.setPassword(passwordEncoder.encode(userRegistrationDto.getPassword()));
+        user.setEmail(userDto.getEmail());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         userRepository.save(user);
     }
 }

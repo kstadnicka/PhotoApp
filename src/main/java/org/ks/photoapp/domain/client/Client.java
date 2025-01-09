@@ -16,7 +16,7 @@ public class Client {
     String lastName;
     String email;
     Long phoneNumber;
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", cascade = {CascadeType.REFRESH, CascadeType.PERSIST})
     List<PhotoSession> photoSessions = new ArrayList<>();
 
 }

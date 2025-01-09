@@ -26,4 +26,12 @@ public enum SessionType {
     }
 
 
+    public static SessionType fromDisplayName(String name) {
+        for (SessionType type : SessionType.values()) {
+            if (type.type.equals(name)) {
+                return type;
+            }
+        }
+        throw new IllegalArgumentException("No enum constant for display name: " + name);
+    }
 }

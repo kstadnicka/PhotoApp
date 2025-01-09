@@ -59,7 +59,6 @@ public class PhotoSessionService {
         photoSession.setSessionDate(photoSession.getSessionDate());
         photoSession.setSessionType(photoSession.getSessionType());
         photoSessionRepository.save(photoSession);
-
     }
 
     public void deleteSession(long id) {

@@ -5,7 +5,7 @@
       layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
-    <title>PhotoApp</title>
+    <title th:text="${heading}">PhotoApp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
           integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
@@ -14,55 +14,54 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    <script defer src="../static/scripts/scripts.js" th:src="@{/scripts/scripts.js}"></script>
-    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+    <script defer th:src="@{/scripts/scripts.js}"></script>
+    <link rel="stylesheet" th:href="@{/styles/main.css}">
 </head>
 
 <body>
 <main class="main-content" layout:fragment="content">
-    <main class="main-content">
-        <div class="user-menu">
-            <h2>Menu użytkownika</h2>
-            <a href="#" th:href="@{/home-page}">Kalendarz</a>
-            <a>Sesje</a>
-            <div class="sub-menu">
-                <a href="#" th:href="@{/new-photosession}">
-                    <i class="fa-solid fa-arrow-right"></i>Dodaj nową sesję
-                </a><br>
-                <a class="toggle-menu" href="#" th:href="@{/all-photosessions}">
-                    <i class="fa-solid fa-arrow-right"></i>Wyszukaj sesję
-                </a>
-            </div>
-            <a id="clients-toggle">Klienci</a>
-            <div id="clients-sub-menu" class="sub-menu hidden">
-                <a class="toggle-menu" href="#" th:href="@{/client/all}">
-                    <i class="fa-solid fa-arrow-right"></i>Wszyscy klienci
-                </a><br>
-                <a class="toggle-menu" href="#" th:href="@{/client/current}">
-                    <i class="fa-solid fa-arrow-right"></i>Aktualni klienci
-                </a>
-            </div>
+    <div class="user-menu">
+        <h2>Menu użytkownika</h2>
+        <a th:href="@{/home-page}">Kalendarz</a>
+        <a>Sesje</a>
+        <div class="sub-menu">
+            <a th:href="@{/new-photosession}">
+                <i class="fa-solid fa-arrow-right"></i>Dodaj nową sesję
+            </a><br>
+            <a class="toggle-menu" th:href="@{/all-photosessions}">
+                <i class="fa-solid fa-arrow-right"></i>Wyszukaj sesję
+            </a>
         </div>
-        <h2 class="list-heading" th:text="${heading}">Aktualne sesje</h2>
-        <ul class="photosession-list" th:remove="all-but-first">
-            <li class="photosession-list-item" th:each=" photoSession: ${photoSessions}">
-                <a href="#" th:href="@{photosession/${photoSession.sessionPhotoId}}"></a>
-                <div class="photosession-list-item-card">
-                    <div class="photosession-list-item-content">
-                        <h3 class="photosession-list-item-title">
-                            <a href="#" th:href="@{|client/${photoSession.client.id}|}" th:text="|Nazwisko: ${photoSession.client.lastName}|">
-                                Nazwisko klienta</a></h3>
-                        <h3 th:text="|Imię: ${photoSession.client.firstName}|">Imię kilenta</h3>
-                        <h3 th:text="|Rodzaj sesji: ${photoSession.sessionType.getType()}|">Rodzaj sesji</h3>
-                        <h3 th:text="|Data sesji: ${photoSession.sessionDate}|">Data sesji</h3>
-                        <a class="session-update" href="#" th:href="@{|/update-photosession/${photoSession.sessionPhotoId}|}">Aktualizuj sesję</a>
-                        <a class="session-delete" th:href="@{|/delete-photosession/${photoSession.sessionPhotoId}|}">Usuń sesję</a>
-                    </div>
-                </div>
-            </li>
-        </ul>
+        <a id="clients-toggle">Klienci</a>
+        <div id="clients-sub-menu" class="sub-menu hidden">
+            <a class="toggle-menu" th:href="@{/client/all}">
+                <i class="fa-solid fa-arrow-right"></i>Wszyscy klienci
+            </a><br>
+            <a class="toggle-menu" th:href="@{/client/current}">
+                <i class="fa-solid fa-arrow-right"></i>Aktualni klienci
+            </a>
+        </div>
+    </div>
 
-    </main>
+    <h2 class="list-heading" th:text="${heading}">Aktualne sesje</h2>
+    <ul class="photosession-list">
+        <li class="photosession-list-item" th:each="photoSession : ${photoSessions}">
+            <a th:href="@{|photosession/${photoSession.sessionPhotoId}|}">
+            </a>
+            <div class="photosession-list-item-card">
+                <div class="photosession-list-item-content">
+                    <h3 class="photosession-list-item-title">
+                        <a th:href="@{|client/${photoSession.client.id}|}" th:text="|Nazwisko: ${photoSession.client.lastName}|">Nazwisko klienta</a>
+                    </h3>
+                    <h3 th:text="|Imię: ${photoSession.client.firstName}|">Imię klienta</h3>
+                    <h3 th:text="|Rodzaj sesji: ${photoSession.sessionType.getType()}|" th:value="*{photoSession.sessionType.type}">Rodzaj sesji</h3>
+                    <h3 th:text="|Data sesji: ${photoSession.sessionDate}|">Data sesji</h3>
+                    <a class="session-update" th:href="@{|/update-photosession/${photoSession.sessionPhotoId}|}">Aktualizuj sesję</a>
+                    <a class="session-delete" th:href="@{|/delete-photosession/${photoSession.sessionPhotoId}|}">Usuń sesję</a>
+                </div>
+            </div>
+        </li>
+    </ul>
 </main>
 </body>
 </html>

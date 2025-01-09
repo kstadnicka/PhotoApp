@@ -1,6 +1,7 @@
 package org.ks.photoapp.domain.photoSession;
 
 import org.ks.photoapp.domain.client.Client;
+import org.ks.photoapp.domain.client.ClientDtoMapper;
 import org.ks.photoapp.domain.client.ClientService;
 import org.ks.photoapp.domain.client.dto.ClientDto;
 import org.ks.photoapp.domain.payment.Payment;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.ks.photoapp.domain.client.ClientController.NOTIFICATION_ATTRIBUTE;
 
@@ -59,7 +61,7 @@ public class PhotoSessionController {
         PhotoSession photoSession = photoSessionService.findById(id);
         List<ClientDto> clients = clientService.getAllClients();
         List<SessionType> sessionType = Arrays.stream(SessionType.values()).toList();
-        model.addAttribute("clients", clients);
+        model.addAttribute("client", clients);
         model.addAttribute("sessionTypes", sessionType);
         model.addAttribute("photoSession", photoSession);
         return "update-photosession";
@@ -69,13 +71,13 @@ public class PhotoSessionController {
     @PostMapping("/update-photosession/{id}")
     public String updatePhotosession(@PathVariable long id, PhotoSessionDto photoSession, RedirectAttributes redirectAttributes,Model model) {
         photoSessionService.updateSession(photoSession, id);
-        List<ClientDto> clients = clientService.getAllClients();
+        Optional<ClientDto> client = clientService.findClientById(id);
         List<SessionType> sessionType = Arrays.stream(SessionType.values()).toList();
-        model.addAttribute("clients", clients);
+        model.addAttribute("client", client);
         model.addAttribute("sessionTypes", sessionType);
         model.addAttribute("photoSession", photoSession);
         redirectAttributes.addFlashAttribute(NOTIFICATION_ATTRIBUTE, "Sesja zaktualizowana");
-        return "redirect:/client/{id}";
+        return "redirect:/all-photosessions";
     }
 
 
@@ -105,6 +107,8 @@ public class PhotoSessionController {
         model.addAttribute("photoSession", photoSession);
         return "photosession-form";
     }
+
+
 
     @PostMapping("/new-photosession")
     public String addPhotoSession(PhotoSessionDto photoSession, RedirectAttributes redirectAttributes) {

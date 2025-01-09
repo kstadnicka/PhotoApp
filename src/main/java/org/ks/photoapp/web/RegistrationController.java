@@ -1,7 +1,7 @@
 package org.ks.photoapp.web;
 
 import org.ks.photoapp.domain.user.UserService;
-import org.ks.photoapp.domain.user.dto.UserRegistrationDto;
+import org.ks.photoapp.domain.user.dto.UserDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,14 +17,14 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String registrationForm(Model model) {
-        UserRegistrationDto userRegistration = new UserRegistrationDto();
-        model.addAttribute("user", userRegistration);
+        UserDto user= new UserDto();
+        model.addAttribute("user", user);
         return "registration-form";
     }
 
     @PostMapping("/registration")
-    public String register(UserRegistrationDto userRegistration) {
-        userService.registerUser(userRegistration);
+    public String register(UserDto userDto) {
+        userService.registerUser(userDto);
         return "success-registration";
     }
 }

@@ -18,16 +18,16 @@ public class PhotoSession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.PERSIST})
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     Client client;
     LocalDateTime sessionDate;
     @Enumerated(EnumType.STRING)
     SessionType sessionType;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.PERSIST})
     @JoinColumn(name = "payment_id")
     Payment payment;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.PERSIST})
     @JoinColumn(name = "photos_id")
     Photos photos;
     Boolean isContractFinished;

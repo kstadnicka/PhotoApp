@@ -16,7 +16,7 @@ public class Payment {
     Boolean isDepositPaid;
     Boolean isBasePaid;
     Boolean isAdditionalPaid;
-    @OneToOne(mappedBy = "payment")
+    @OneToOne(mappedBy = "payment", cascade = {CascadeType.REFRESH, CascadeType.PERSIST})
     PhotoSession photoSession;
 
 

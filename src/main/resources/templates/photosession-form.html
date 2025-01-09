@@ -64,7 +64,7 @@
       <label for="session_type">Rodzaj sesji</label>
       <select id="session_type" th:field="*{sessionType}" required>
         <option value="" hidden>Wybierz rodzaj sesji</option>
-        <option th:each="sessionType : ${sessionTypes}" th:value="${sessionType.getType()}" th:text="${sessionType.getType()}"></option>
+        <option th:each="sessionType : ${sessionTypes}" th:value="${sessionType}" th:text="${sessionType.getType()}"></option>
       </select>
       </div>
       <div>

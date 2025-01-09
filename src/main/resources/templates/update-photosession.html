@@ -45,12 +45,7 @@
         </div>
 
         <h2 class="list-heading">Aktualizuj sesję</h2>
-        <form th:action="@{/update-photosession/{id}(id=${id})}" method="post">
-            <label for="session_type">Rodzaj sesji</label>
-            <select id="session_type" th:field="*{sessionTypes}" required>
-                <option value="" hidden>Wybierz rodzaj sesji</option>
-                <option th:each="sessionType : ${sessionTypes}" th:value="${sessionType.getType()}" th:text="${sessionType.getType()}"></option>
-            </select>
+        <form th:action="@{/update-photosession/${photoSession.client.id}}" method="post">
             <div>
                 <label for="sessionDate">Data sesji</label>
                 <input type="datetime-local" id="sessionDate"
