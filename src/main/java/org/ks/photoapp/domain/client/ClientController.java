@@ -5,6 +5,7 @@ package org.ks.photoapp.domain.client;
 import org.ks.photoapp.domain.client.dto.ClientDto;
 import org.ks.photoapp.domain.photoSession.PhotoSessionService;
 import org.ks.photoapp.domain.photoSession.dto.PhotoSessionDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +41,7 @@ public class ClientController{
         List<ClientDto> clients = clientService.getAllClients();
         model.addAttribute("heading", "Wszyscy klienci");
         model.addAttribute("clients", clients);
-        return "all-client";
+        return "all-clients";
     }
 
     @GetMapping("/client/{id}")
@@ -60,19 +61,19 @@ public class ClientController{
   //      return "current-client";
  //   }
 
-    @GetMapping("/client/new-client")
+    @GetMapping("/client/new")
     public String newClientForm(Model model){
         ClientDto client = new ClientDto();
         model.addAttribute("client", client);
         return "client-form";
     }
 
-    @PostMapping("/client/new-client")
+    @PostMapping("/client/new")
     public String newClient(ClientDto client, RedirectAttributes redirectAttributes){
         clientService.createNewClient(client);
         redirectAttributes.addFlashAttribute(NOTIFICATION_ATTRIBUTE,
                 "Dodano nowego klienta");
-        return "redirect:/all-clients";
+        return "redirect:/client/all";
     }
 
 

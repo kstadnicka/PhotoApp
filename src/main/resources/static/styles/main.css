@@ -356,7 +356,8 @@ a{
 .new-photosession-form>input,
 .new-photosession-form>textarea,
 .new-photosession-form>button,
-.new-photosession-form>select{
+.new-photosession-form>select,
+.new-client-form>input{
     font-size: 1.2rem;
     color: black;
     padding: 8px;
@@ -468,7 +469,8 @@ input[type="checkbox"] {
     text-align: center;
 }
 
-.add_photosession{
+.add_photosession,
+.add_new_client{
     margin-top: 20px;
     font-size: 1rem;
     color: white;
