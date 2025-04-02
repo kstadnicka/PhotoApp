@@ -11,7 +11,8 @@ import java.util.Optional;
 @Repository
 public interface PhotoSessionRepository extends CrudRepository <PhotoSession,Long> {
 
-    Optional<PhotoSession> findPhotoSessionByClientId(Long clientId);    Optional<PhotoSession> findPhotoSessionById(long id);
+    Optional<PhotoSession> findPhotoSessionByClientId(long clientId);
+    Optional<PhotoSession> findPhotoSessionById(long id);
     Optional<PhotoSession> findPhotoSessionByClient(Client client);
     Optional<PhotoSession> findPhotoSessionBySessionDate(LocalDateTime sessionDate);
     List<PhotoSession> findAllByIsContractFinishedIsFalse();

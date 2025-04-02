@@ -45,7 +45,9 @@
         </div>
 
         <h2 class="list-heading">Aktualizuj sesję</h2>
-        <form th:action="@{/update-photosession/${photoSession.client.id}}" method="post">
+        <form th:action="@{/update-photosession/{id}(id=${photoSession.client.id})}" method="post">
+            <input type="hidden" name="client.id" th:value="${photoSession.client.id}"/>
+
             <div>
                 <label for="sessionDate">Data sesji</label>
                 <input type="datetime-local" id="sessionDate"

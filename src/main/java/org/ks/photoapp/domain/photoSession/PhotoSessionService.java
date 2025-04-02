@@ -66,35 +66,41 @@ public class PhotoSessionService {
     }
 
 
-    public void updateSession(PhotoSessionDto photoSessionDto, long id){
+    public void updateSession(PhotoSessionDto photoSessionDto, long id) {
         PhotoSession photoSessionToUpdate = photoSessionRepository.findPhotoSessionById(id)
-                .orElseGet(PhotoSession::new);
+                .orElseThrow(() -> new IllegalArgumentException("Photo session not found"));
+
         if (photoSessionDto.getClient() == null || photoSessionDto.getClient().getId() == null) {
             throw new IllegalArgumentException("Client ID cannot be null");
         }
-        Client client = clientRepository.findById(photoSessionDto.getClient().getId()).orElse(new Client());
+
+        Client client = clientRepository.findById(photoSessionDto.getClient().getId())
+                .orElseThrow(() -> new IllegalArgumentException("Client not found"));
+
         photoSessionToUpdate.setClient(client);
         photoSessionToUpdate.setSessionDate(photoSessionDto.getSessionDate());
-        photoSessionToUpdate.setSessionType(photoSessionDto.getSessionType());
-        if (photoSessionToUpdate.getPayment() == null) {
-            Payment newPayment = new Payment();
-            photoSessionToUpdate.setPayment(newPayment);
-        }
+
         Payment payment = photoSessionToUpdate.getPayment();
+        if (payment == null) {
+            throw new IllegalStateException("Payment information is missing");
+        }
+
         payment.setIsDepositPaid(photoSessionDto.getIsDepositPaid());
         payment.setIsBasePaid(photoSessionDto.getIsBasePaid());
         payment.setIsAdditionalPaid(photoSessionDto.getIsAdditionalPaid());
-        if (photoSessionToUpdate.getPhotos() == null) {
-            Photos newPhotos = new Photos();
-            photoSessionToUpdate.setPhotos(newPhotos);
-        }
+
         Photos photos = photoSessionToUpdate.getPhotos();
+        if (photos == null) {
+            throw new IllegalStateException("Photos information is missing");
+        }
+
         photos.setSentToClientForChoose(photoSessionDto.getIsPhotosSentToClientForChoose());
         photos.setChosenByClient(photoSessionDto.getIsPhotosChosenByClient());
         photos.setAdditionalChosenByClient(photoSessionDto.getIsAdditionalPhotosChosenByClient());
-        photoSessionToUpdate.setIsContractFinished(photoSessionDto.getIsContractFinished());
+
         photoSessionRepository.save(photoSessionToUpdate);
     }
+
 
 //
 //    public void updateSession(PhotoSessionDto photoSessionDto, long id){

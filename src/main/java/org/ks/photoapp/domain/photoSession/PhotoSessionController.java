@@ -61,24 +61,26 @@ public class PhotoSessionController {
         PhotoSession photoSession = photoSessionService.findById(id);
         List<ClientDto> clients = clientService.getAllClients();
         List<SessionType> sessionType = Arrays.stream(SessionType.values()).toList();
-        model.addAttribute("client", clients);
+
+        model.addAttribute("clients", clients); // Poprawka: zmiana z "client" na "clients"
         model.addAttribute("sessionTypes", sessionType);
         model.addAttribute("photoSession", photoSession);
-        return "update-photosession";
+
+        return "update-photosession"; // Nazwa widoku
     }
+
 
 
     @PostMapping("/update-photosession/{id}")
-    public String updatePhotosession(@PathVariable long id, PhotoSessionDto photoSession, RedirectAttributes redirectAttributes,Model model) {
+    public String updatePhotosession(@PathVariable long id,
+                                     @ModelAttribute PhotoSessionDto photoSession,
+                                     RedirectAttributes redirectAttributes) {
         photoSessionService.updateSession(photoSession, id);
-        Optional<ClientDto> client = clientService.findClientById(id);
-        List<SessionType> sessionType = Arrays.stream(SessionType.values()).toList();
-        model.addAttribute("client", client);
-        model.addAttribute("sessionTypes", sessionType);
-        model.addAttribute("photoSession", photoSession);
-        redirectAttributes.addFlashAttribute(NOTIFICATION_ATTRIBUTE, "Sesja zaktualizowana");
+
+        redirectAttributes.addFlashAttribute("notification", "Sesja zaktualizowana");
         return "redirect:/all-photosessions";
     }
+
 
 
     @GetMapping("/photosession/{client}")
