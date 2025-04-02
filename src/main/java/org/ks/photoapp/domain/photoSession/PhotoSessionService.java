@@ -48,6 +48,8 @@ public class PhotoSessionService {
         return photoSession.map(PhotoSessionDtoMapper::map);
     }
 
+
+
     public void createNewSession(PhotoSessionDto photoSessionToSave) {
         Payment payment = new Payment();
         Photos photos = new Photos();
@@ -56,8 +58,9 @@ public class PhotoSessionService {
         photoSession.setClient(client);
         photoSession.setPayment(payment);
         photoSession.setPhotos(photos);
-        photoSession.setSessionDate(photoSession.getSessionDate());
-        photoSession.setSessionType(photoSession.getSessionType());
+        photoSession.setSessionDate(photoSessionToSave.getSessionDate());
+        photoSession.setSessionType(photoSessionToSave.getSessionType());
+        photoSession.isContractFinished = false;
         photoSessionRepository.save(photoSession);
     }
 

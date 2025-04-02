@@ -62,11 +62,11 @@ public class PhotoSessionController {
         List<ClientDto> clients = clientService.getAllClients();
         List<SessionType> sessionType = Arrays.stream(SessionType.values()).toList();
 
-        model.addAttribute("clients", clients); // Poprawka: zmiana z "client" na "clients"
+        model.addAttribute("clients", clients);
         model.addAttribute("sessionTypes", sessionType);
         model.addAttribute("photoSession", photoSession);
 
-        return "update-photosession"; // Nazwa widoku
+        return "update-photosession";
     }
 
 
